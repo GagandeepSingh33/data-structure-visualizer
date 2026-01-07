@@ -11,7 +11,9 @@ An interactive, web-based **Data Structure Visualizer** designed to help beginne
 core data structures and algorithms through **step-by-step, rewindable visualizations**
 and a **guided learning path**.
 
-This project focuses on *how and why* data structures change internally, not just the final result.
+This tool helps beginners visualize abstract DSA concepts and supports **self-paced learning** for students without prior CS background.
+
+This project focuses on **how and why** data structures change internally, not just the final result.
 
 ---
 
