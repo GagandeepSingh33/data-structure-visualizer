@@ -122,7 +122,7 @@ secure, and scalable access via a public URL without requiring any setup from us
 ## 🚀 Local Setup
 
 ```bash
-git clone <your-repository-link>
+git clone https://github.com/GagandeepSingh33/data-structure-visualizer.git
 cd DataStructureVisualizer
 open index.html
 
