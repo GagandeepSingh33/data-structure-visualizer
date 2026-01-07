@@ -32,16 +32,16 @@ computer science background**.
 ## 📸 Screenshots
 
 ### Home & Learning Path
-![Home Page](screenshots/home.png)
+![Home Page](home.png)
 
 ### Array Visualizer
-![Array Visualizer](screenshots/array.gif)
+![Array Visualizer](array.gif)
 
 ### Sorting Algorithm Animation
-![Sorting Animation](screenshots/sorting.gif)
+![Sorting Animation](sorting.gif)
 
 ### Balanced Tree Visualization
-![AVL Tree](screenshots/avl.gif)
+![AVL Tree](avl.gif)
 
 
 
