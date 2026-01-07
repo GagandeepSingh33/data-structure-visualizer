@@ -35,13 +35,13 @@ computer science background**.
 <img src="home.png" width="700"/>
 
 ### Array Visualizer
-<img src="array.gif" width="500"/>
+<img src="array.gif" width="650"/>
 
 ### Sorting Algorithm Animation
-<img src="sorting.gif" width="500"/>
+<img src="sorting.gif" width="650"/>
 
 ### Balanced Tree Visualization
-<img src="avl.gif" width="500"/>
+<img src="avl.gif" width="650"/>
 
 
 
