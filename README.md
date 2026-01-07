@@ -29,19 +29,19 @@ This problem is especially common among **first-year students and learners witho
 computer science background**.
 
 ---
-## 📸 Screenshots
+## 📸 Screenshots/gifs
 
 ### Home & Learning Path
-![Home Page](home.png)
+<img src="home.png" width="700"/>
 
 ### Array Visualizer
-![Array Visualizer](array.gif)
+<img src="array.gif" width="500"/>
 
 ### Sorting Algorithm Animation
-![Sorting Animation](sorting.gif)
+<img src="sorting.gif" width="500"/>
 
 ### Balanced Tree Visualization
-![AVL Tree](avl.gif)
+<img src="avl.gif" width="500"/>
 
 
 
