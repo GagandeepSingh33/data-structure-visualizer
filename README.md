@@ -29,6 +29,21 @@ This problem is especially common among **first-year students and learners witho
 computer science background**.
 
 ---
+## 📸 Screenshots
+
+### Home & Learning Path
+![Home Page](screenshots/home.png)
+
+### Array Visualizer
+![Array Visualizer](screenshots/array.gif)
+
+### Sorting Algorithm Animation
+![Sorting Animation](screenshots/sorting.gif)
+
+### Balanced Tree Visualization
+![AVL Tree](screenshots/avl.gif)
+
+
 
 ## 💡 Solution
 
