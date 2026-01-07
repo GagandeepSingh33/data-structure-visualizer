@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Linear Search Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Linear Search Visualizer</h1>
+    <p>
+      Watch how linear search scans each element in an array one by one until it finds the target or reaches the end. 
+    </p>
+  </header>
+
+  <main class="ds-main array-page-main">
+    <section id="linear-search-page">
+
+      <!-- Definition -->
+      <section id="linear-definition-section" class="ds-card">
+        <h2>What is Linear Search?</h2>
+        <p>
+          Linear search is a sequential searching algorithm that starts from one end of the array and
+          compares each element with the target value. 
+        </p>
+        <p>
+          If a match is found the search stops and returns the index; if the end is reached without a match, the element is reported as not found. 
+        </p>
+      </section>
+
+      <!-- Array and target setup (no size input) -->
+      <section id="linear-init-section" class="ds-card">
+        <h2>Array Setup</h2>
+        <div class="init-row">
+          <label>
+            Elements (comma-separated):
+            <input type="text" id="linear-elements-input" placeholder="e.g., 7,3,9,2,5" />
+          </label>
+          <label>
+            Target:
+            <input type="number" id="linear-target-input" placeholder="e.g., 9" />
+          </label>
+          <button id="linear-init-btn">Create Array</button>
+        </div>
+        <p class="ds-selector-hint">
+          Leave the elements field empty to generate a small random array automatically.
+        </p>
+        <p id="linear-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization area -->
+      <section id="linear-visual-section" class="ds-card">
+        <h2>Linear Search Animation</h2>
+        <div id="linear-array-container"></div>
+        <p id="linear-status-text"></p>
+      </section>
+
+      <!-- Controls -->
+      <section id="linear-controls-section" class="ds-card">
+        <h2>Controls</h2>
+        <p class="small-note">
+          Step through each comparison or run the full search automatically.
+        </p>
+        <div class="buttons-row">
+          <button id="linear-prev-step-btn">Previous Step</button>
+          <button id="linear-next-step-btn">Next Step</button>
+          <button id="linear-play-btn">Play</button>
+          <button id="linear-reset-btn">Reset</button>
+        </div>
+        <p id="linear-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="linear-explanation-section" class="ds-card">
+        <h2>Step Explanation</h2>
+        <div id="linear-explanation-box">
+          Enter elements and a target (or leave elements empty for a random array), then start the linear search steps.
+        </div>
+      </section>
+
+      <!-- Complexity -->
+      <section id="linear-complexity-section" class="ds-card">
+        <h2>Time &amp; Space Complexity</h2>
+        <p>
+          Time complexity: best case O(1) when the target is at the first position; worst and average
+          cases O(n) because each element may need to be checked. 
+        </p>
+        <p>
+          Space complexity: O(1) extra, since the search operates directly on the existing array
+          without additional data structures. 
+        </p>
+      </section>
+
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="searching.html">← Back to Searching</a>
+    </div>
+  </main>
+
+  <!-- Single ES module entry -->
+  <script type="module" src="ui/linearControls.js"></script>
+</body>
+</html>

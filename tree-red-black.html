@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Red-Black Tree Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="ds-header ds-header-center">
+    <h1>Red-Black Tree Visualizer</h1>
+    <p>
+      Build a red-black tree, see recoloring and rotations that keep it balanced,
+      explore traversals, and view classic insertion cases.
+    </p>
+  </header>
+
+  <main class="ds-main array-page-main">
+    <section id="rbt-visualizer-section">
+
+      <!-- Definition -->
+      <section id="rbt-definition-section" class="ds-card">
+        <h2>What is a Red-Black Tree?</h2>
+        <p>
+          A red-black tree is a self-balancing Binary Search Tree where each node is colored red or
+          black, the root is black, no red node has a red child, and every path from a node to a leaf
+          has the same number of black nodes. 
+        </p>
+      </section>
+
+      <!-- Core properties (static description) -->
+      <section id="rbt-basic-properties-section" class="ds-card">
+        <h2>Red-Black Tree Properties</h2>
+        <p class="small-note">
+          A valid red-black tree always satisfies these rules. 
+        </p>
+        <ul>
+          <li>Every node is either red or black.</li>
+          <li>The root node is always black.</li>
+          <li>Every leaf (null child) is treated as a black node.</li>
+          <li>No red node has a red parent or red child (no two reds in a row).</li>
+          <li>
+            For any node, all simple paths from that node to a leaf contain the same number of
+            black nodes (black height).
+          </li>
+        </ul>
+      </section>
+
+      <!-- Configuration -->
+      <section id="rbt-config-section" class="ds-card">
+        <h2>Red-Black Configuration</h2>
+        <p class="small-note">
+          Enter distinct numeric keys separated by commas. The tree is built by inserting each key as
+          red and then fixing property violations using recoloring and rotations. 
+        </p>
+
+        <div class="init-row">
+          <label>
+            Initial elements (comma-separated, unique):
+            <input
+              type="text"
+              id="rbt-elements-input"
+              placeholder="e.g., 10, 5, 15, 1, 7, 12, 18"
+            />
+          </label>
+        </div>
+
+        <div class="buttons-row">
+          <button id="rbt-build-btn">Build Red-Black Tree</button>
+          <button id="rbt-reset-btn">Reset</button>
+        </div>
+
+        <p id="rbt-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Tree view -->
+      <section id="rbt-visual-section" class="ds-card">
+        <h2>Red-Black Tree View</h2>
+        <p class="small-note">
+          The tree is drawn level by level. Insert and delete operations may cause recoloring or
+          rotations to restore all red-black properties. 
+        </p>
+
+        <div class="array-rows">
+          <div class="array-row">
+            <div class="row-title">
+              Red-black tree view (root at top)
+            </div>
+            <div id="rbt-tree-container" class="heap-tree"></div>
+          </div>
+        </div>
+
+        <!-- Inline step explanation just under the tree -->
+        <p id="rbt-inline-explanation" class="small-note"></p>
+      </section>
+
+      <!-- Traversals -->
+      <section id="rbt-traversal-section" class="ds-card">
+        <h2>Traversals</h2>
+        <p class="small-note">
+          Run Inorder, Preorder, or Postorder traversals to see the node visitation order.
+          Inorder traversal still produces sorted keys because a red-black tree is a BST. 
+        </p>
+
+        <div class="buttons-row">
+          <button id="rbt-inorder-btn" class="rbt-traversal-btn" disabled>Inorder Traversal</button>
+          <button id="rbt-preorder-btn" class="rbt-traversal-btn" disabled>Preorder Traversal</button>
+          <button id="rbt-postorder-btn" class="rbt-traversal-btn" disabled>Postorder Traversal</button>
+        </div>
+
+        <p id="rbt-traversal-output" class="small-note"></p>
+      </section>
+
+      <!-- Dynamic red-black property check -->
+      <section id="rbt-properties-section" class="ds-card">
+        <h2>Red-Black Properties (Current Tree)</h2>
+        <p class="small-note">
+          Check that the root is black, no red node has a red child, and every root-to-leaf path has
+          the same number of black nodes (black height). [web:183][web:186]
+        </p>
+
+        <div class="buttons-row">
+          <button id="rbt-check-props-btn" disabled>Check Red-Black Properties</button>
+        </div>
+
+        <p id="rbt-props-output" class="small-note"></p>
+      </section>
+
+      <!-- Operations -->
+      <section id="rbt-ops-section" class="ds-card">
+        <h2>Red-Black Operations</h2>
+        <p class="small-note">
+          Insert and delete keys. Each operation first uses ordinary BST logic, then fixes
+          red-black property violations using recoloring and rotations. 
+        </p>
+
+        <div class="controls-row">
+          <label>
+            Key:
+            <input
+              type="text"
+              id="rbt-op-key-input"
+              placeholder="numeric key"
+            />
+          </label>
+        </div>
+
+        <div class="buttons-row">
+          <button id="rbt-insert-btn" disabled>Insert Key</button>
+          <button id="rbt-delete-btn" disabled>Delete Key</button>
+        </div>
+
+        <p id="rbt-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Insertion case examples -->
+      <section id="rbt-examples-section" class="ds-card">
+        <h2>Insertion Case Examples</h2>
+        <p class="small-note">
+          Click a button to see a small example that triggers a particular red-black insertion
+          fix-up scenario (recoloring only, rotation + recoloring, etc.). These examples are
+          independent of your main tree. 
+        </p>
+
+        <div class="buttons-row">
+          <button id="rbt-example-recolor-btn">Recoloring Case</button>
+          <button id="rbt-example-rotate-left-btn">Left-Rotation Case</button>
+        </div>
+
+        <div class="buttons-row">
+          <button id="rbt-example-rotate-right-btn">Right-Rotation Case</button>
+          <button id="rbt-example-rotate-double-btn">Double Rotation Case</button>
+        </div>
+
+        <p class="small-note" id="rbt-examples-note"></p>
+
+        <div class="array-rows">
+          <div class="array-row">
+            <div class="row-title">
+              Red-black example view
+            </div>
+            <div id="rbt-example-tree-container" class="heap-tree"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Explanation + playback -->
+      <section id="rbt-explanation-section" class="ds-card">
+        <h2>Step Explanation</h2>
+
+        <div class="heap-playback-controls">
+          <button id="rbt-prev-step-btn">◀ Prev</button>
+          <button id="rbt-play-pause-btn">Pause</button>
+          <button id="rbt-next-step-btn">Next ▶</button>
+
+          <span class="heap-speed-label">Speed:</span>
+          <button id="rbt-speed-decrease">−</button>
+          <input
+            type="range"
+            id="rbt-speed-slider"
+            min="1"
+            max="5"
+            step="1"
+            value="3"
+          />
+          <button id="rbt-speed-increase">+</button>
+        </div>
+
+        <div id="rbt-explanation-box">
+          Enter initial elements and click "Build Red-Black Tree" to construct the tree. As you
+          insert and delete keys, this area explains recoloring, single/double rotations, and how
+          the red-black properties are restored after each step.
+        </div>
+      </section>
+
+      <!-- Legend -->
+      <section id="rbt-legend-section" class="ds-card">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active / visited node</li>
+          <li><span class="legend-box shifted"></span> Nodes involved in a rotation</li>
+          <li><span class="legend-box invalid"></span> Red-black property violation or invalid operation</li>
+        </ul>
+      </section>
+    </section>
+
+    <div class="page-footer">
+      <a class="back-link" href="tree.html">← Back to Tree Types</a>
+    </div>
+  </main>
+
+  <script src="core/rbtLogic.js"></script>
+  <script src="visual/rbtAnimate.js"></script>
+  <script src="ui/rbtControls.js"></script>
+</body>
+</html>

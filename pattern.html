@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Visualizer Learning Path</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="ds-header ds-header-center">
+    <h1> Data Structure Visualizer – Learning Path</h1>
+    <p>
+      This page suggests a <strong>recommended order</strong> to explore the visualizers,
+      helping you move from basic linear structures to advanced trees, searching, and sorting
+      algorithms with better understanding.
+    </p>
+  </header>
+
+  <main class="ds-main array-page-main">
+    <section id="pattern-section">
+
+      <!-- Intro -->
+      <section class="ds-card">
+        <h2>🧭 How to Use This Path</h2>
+        <p class="small-note">
+          Follow the steps from top to bottom if you are new to Data Structures.
+          You may also jump directly to any visualizer, but the suggested order
+          builds concepts gradually for better intuition.
+        </p>
+      </section>
+
+      <!-- Step 1 -->
+      <section class="ds-card">
+        <h2>Step 1: Core Linear Structures</h2>
+        <p class="small-note">
+          These structures introduce how data is stored, accessed, and processed sequentially.
+          They form the foundation for almost everything that follows.
+        </p>
+
+        <ol class="pattern-list">
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Array</strong> – Fixed-size, contiguous memory storage.
+                Learn indexing, traversal, and capacity constraints.
+              </div>
+              <a class="btn-link" href="array.html">Open visualizer</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Stack</strong> – Last-In-First-Out (LIFO) structure.
+                Useful for recursion, undo operations, and expression evaluation.
+              </div>
+              <a class="btn-link" href="stack.html">Open visualizer</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Queue</strong> – First-In-First-Out (FIFO) structure.
+                Understand scheduling and buffering concepts.
+              </div>
+              <div class="pattern-links">
+                <a class="btn-link" href="queue.html">Overview</a>
+                <a class="btn-link" href="queue-linear.html">Linear</a>
+                <a class="btn-link" href="queue-circular.html">Circular</a>
+                <a class="btn-link" href="queue-priority.html">Priority</a>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Step 2 -->
+      <section class="ds-card">
+        <h2>Step 2: Linked Lists</h2>
+        <p class="small-note">
+          Linked lists replace index-based access with pointers, allowing dynamic insertion
+          and deletion without shifting elements.
+        </p>
+
+        <ol class="pattern-list">
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Linked List Overview</strong> – Learn nodes, pointers, and traversal.
+              </div>
+              <a class="btn-link" href="linked-list.html">Open overview</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Singly Linked List</strong> – One-directional node connections.
+              </div>
+              <a class="btn-link" href="linked-list-singly.html">Open visualizer</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Doubly Linked List</strong> – Nodes store both previous and next links.
+              </div>
+              <a class="btn-link" href="linked-list-doubly.html">Open visualizer</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Circular Variants</strong> – Tail connects back to head, forming loops.
+              </div>
+              <div class="pattern-links">
+                <a class="btn-link" href="linked-list-singly-circular.html">Singly Circular</a>
+                <a class="btn-link" href="linked-list-doubly-circular.html">Doubly Circular</a>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Step 3 -->
+      <section class="ds-card">
+        <h2>Step 3: Searching Techniques</h2>
+        <p class="small-note">
+          Searching algorithms help locate elements efficiently. Binary search introduces
+          the importance of sorted data.
+        </p>
+
+        <ol class="pattern-list">
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Linear Search</strong> – Sequentially checks each element.
+              </div>
+              <a class="btn-link" href="search-linear.html">Open visualizer</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Binary Search</strong> – Divide-and-conquer on sorted arrays.
+              </div>
+              <a class="btn-link" href="search-binary.html">Open visualizer</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Searching Overview</strong> – Summary of when to use each technique.
+              </div>
+              <a class="btn-link" href="searching.html">Open overview</a>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Step 4 -->
+      <section class="ds-card">
+        <h2>Step 4: Sorting Algorithms</h2>
+        <p class="small-note">
+          Sorting prepares data for efficient searching and analysis.
+          Start with simple algorithms, then explore optimized approaches.
+        </p>
+
+        <ol class="pattern-list">
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Sorting Overview</strong> – Stability, complexity, and use-cases.
+              </div>
+              <a class="btn-link" href="sorting.html">Open overview</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Basic Quadratic Sorts</strong> – Bubble, Selection, Insertion.
+              </div>
+              <div class="pattern-links">
+                <a class="btn-link" href="sorting-bubble.html">Bubble</a>
+                <a class="btn-link" href="sorting-selection.html">Selection</a>
+                <a class="btn-link" href="sorting-insertion.html">Insertion</a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Efficient Comparison Sorts</strong> – Merge and Quick Sort.
+              </div>
+              <div class="pattern-links">
+                <a class="btn-link" href="sorting-merge.html">Merge</a>
+                <a class="btn-link" href="sorting-quick.html">Quick</a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Specialized Sorts</strong> – Counting, Radix, Heap, Shell.
+              </div>
+              <div class="pattern-links">
+                <a class="btn-link" href="sorting-counting.html">Counting</a>
+                <a class="btn-link" href="sorting-radix.html">Radix</a>
+                <a class="btn-link" href="sorting-heap.html">Heap</a>
+                <a class="btn-link" href="sorting-shell.html">Shell</a>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Step 5 -->
+      <section class="ds-card">
+        <h2>Step 5: Heaps & Priority Structures</h2>
+        <p class="small-note">
+          Heaps are tree-based structures optimized for priority handling and scheduling.
+        </p>
+
+        <ol class="pattern-list">
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Binary Heap</strong> – Min Heap and Max Heap stored efficiently in arrays.
+              </div>
+              <a class="btn-link" href="heap.html">Open visualizer</a>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Step 6 -->
+      <section class="ds-card">
+        <h2>Step 6: Trees & Balanced Trees</h2>
+        <p class="small-note">
+          Trees introduce hierarchical organization. Balancing ensures fast operations.
+        </p>
+
+        <ol class="pattern-list">
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Tree Overview</strong> – Nodes, edges, depth, and traversal basics.
+              </div>
+              <a class="btn-link" href="tree.html">Open overview</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Binary Search Tree (BST)</strong> – Ordered tree with recursive structure.
+              </div>
+              <a class="btn-link" href="tree-bst.html">Open visualizer</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>AVL Tree</strong> – Height-balanced BST using rotations.
+              </div>
+              <a class="btn-link" href="tree-avl.html">Open visualizer</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>Red-Black Tree</strong> – Color-based balancing used in standard libraries.
+              </div>
+              <a class="btn-link" href="tree-red-black.html">Open visualizer</a>
+            </div>
+          </li>
+
+          <li>
+            <div class="pattern-item">
+              <div class="pattern-text">
+                <strong>B-Tree &amp; B+ Tree</strong> – Multi-way disk-oriented trees (planned).
+              </div>
+              <div class="pattern-links">
+                <a class="btn-link" href="tree-b.html">B-Tree</a>
+                <a class="btn-link" href="tree-b-plus.html">B+ Tree</a>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Closing -->
+      <section class="ds-card">
+        <h2>✅ After Completing This Path</h2>
+        <p class="small-note">
+          Revisit visualizers with custom inputs, compare behaviors across structures,
+          and observe how searching and sorting interact with different data layouts.
+        </p>
+      </section>
+
+    </section>
+
+    <div class="page-footer">
+      <a class="back-link" href="index.html">← Back to Home</a>
+    </div>
+  </main>
+</body>
+</html>

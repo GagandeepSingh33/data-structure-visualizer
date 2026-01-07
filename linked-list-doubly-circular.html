@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Doubly Circular Linked List Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Doubly Circular Linked List Visualizer</h1>
+    <p>See how prev and next pointers form a closed ring where the last node links back to the head.</p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="dcll-visualizer-section">
+      <!-- Definition -->
+      <section id="dcll-definition-section">
+        <h2>What is a Doubly Circular Linked List?</h2>
+        <p>
+          A doubly circular linked list is a sequence of nodes where each node stores a value and two pointers:
+          <strong>prev</strong> to the previous node and <strong>next</strong> to the next node.
+          The <strong>head.prev</strong> pointer refers to the last node, and the <strong>tail.next</strong> pointer
+          refers back to the head, forming a closed ring with no null pointers at the ends.
+        </p>
+      </section>
+
+      <!-- Initialization -->
+      <section id="dcll-init-section">
+        <h2>List Initialization</h2>
+        <p class="small-note">
+          Start with an empty circular list, or create one from comma-separated values.
+          The last node’s next pointer will point to head, and head.prev will point to tail, forming a bidirectional circle.
+        </p>
+        <div class="init-row">
+          <label>
+            Initial elements (comma-separated, optional):
+            <input type="text" id="dcll-elements-input" placeholder="e.g., 10,20,30" />
+          </label>
+          <button id="dcll-init-btn">Create Doubly Circular List</button>
+          <button id="dcll-clear-btn">Clear List</button>
+        </div>
+        <p id="dcll-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization: circular arena -->
+      <section id="dcll-visual-section">
+        <h2>List View (Circular)</h2>
+        <p class="small-note">
+          Nodes are arranged around a circle. The <strong>head</strong> node is marked.
+          Following <strong>next</strong> pointers moves around the ring in one direction,
+          and following <strong>prev</strong> pointers moves around in the opposite direction.
+          After the last node, both prev and next links wrap around and lead back into the ring.
+        </p>
+
+        <div id="dcll-circle-wrapper">
+          <div id="dcll-head-label">head</div>
+          <div id="dcll-circle-container">
+            <!-- nodes + arrows rendered here by JS -->
+          </div>
+          <div id="dcll-length-label"></div>
+        </div>
+      </section>
+
+      <!-- Controls -->
+      <section id="dcll-controls-section">
+        <h2>Linked List Operations</h2>
+        <p class="small-note">
+          Operations use pointer traversal around the circle. There is no null terminator, so traversals stop
+          after one full loop from head or tail.
+        </p>
+
+        <!-- Inputs -->
+        <div class="controls-row">
+          <label>
+            Index (0-based, optional):
+            <input type="number" id="dcll-index-input" min="0" />
+          </label>
+          <label>
+            Value (for insert/search/delete by value):
+            <input type="text" id="dcll-value-input" />
+          </label>
+          <label>
+            Target value (for insert before/after element):
+            <input type="text" id="dcll-target-value-input" />
+          </label>
+        </div>
+
+        <!-- Insert at ends -->
+        <div class="buttons-row dcll-buttons-row">
+          <span class="buttons-label">Insert at ends:</span>
+          <div class="buttons-group">
+            <button class="dcll-op-btn" data-op="insert-head">Insert at Head</button>
+            <button class="dcll-op-btn" data-op="insert-tail">Insert at End</button>
+          </div>
+        </div>
+
+        <!-- Insert by position/value -->
+        <div class="buttons-row dcll-buttons-row">
+          <span class="buttons-label">Insert by position/value:</span>
+          <div class="buttons-group">
+            <button class="dcll-op-btn" data-op="insert-index">Insert at Index</button>
+            <button class="dcll-op-btn" data-op="insert-before">Insert Before Element</button>
+            <button class="dcll-op-btn" data-op="insert-after">Insert After Element</button>
+          </div>
+        </div>
+
+        <!-- Delete at ends -->
+        <div class="buttons-row dcll-buttons-row">
+          <span class="buttons-label">Delete at ends:</span>
+          <div class="buttons-group">
+            <button class="dcll-op-btn" data-op="delete-head">Delete Head</button>
+            <button class="dcll-op-btn" data-op="delete-tail">Delete at End</button>
+          </div>
+        </div>
+
+        <!-- Delete by position/value -->
+        <div class="buttons-row dcll-buttons-row">
+          <span class="buttons-label">Delete by position/value:</span>
+          <div class="buttons-group">
+            <button class="dcll-op-btn" data-op="delete-index">Delete at Index</button>
+            <button class="dcll-op-btn" data-op="delete-value">Delete Element</button>
+          </div>
+        </div>
+
+        <!-- Search -->
+        <div class="buttons-row dcll-buttons-row">
+          <span class="buttons-label">Search:</span>
+          <div class="buttons-group">
+            <button class="dcll-op-btn" data-op="search-value">Search by Value</button>
+            <button class="dcll-op-btn" data-op="search-index">Search by Index</button>
+          </div>
+        </div>
+
+        <!-- Traversal -->
+        <div class="buttons-row dcll-buttons-row">
+          <span class="buttons-label">Traversal:</span>
+          <div class="buttons-group">
+            <button class="dcll-op-btn" data-op="traverse-forward">
+              Traverse Once Using next (head → … → head)
+            </button>
+            <button class="dcll-op-btn" data-op="traverse-backward">
+              Traverse Once Using prev (tail → … → tail)
+            </button>
+          </div>
+        </div>
+
+        <p id="dcll-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="dcll-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="dcll-explanation-box">
+          Initialize the circular list or pick an operation to see how prev and next pointers move around the ring.
+        </div>
+        <p id="dcll-complexity-info" class="small-note"></p>
+      </section>
+
+      <!-- Legend -->
+      <section id="dcll-legend-section">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active node / currently visited in traversal</li>
+          <li><span class="legend-box pointer"></span> Updated pointer (prev/next reference changes here)</li>
+          <li><span class="legend-box target"></span> Target node for insertion, deletion, or search</li>
+          <li><span class="legend-box removed"></span> Node being deleted (fades out)</li>
+          <li><span class="legend-box special"></span> Head node in the circular list</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="linked-list.html">← Back to Linked List Types</a>
+    </div>
+  </main>
+
+  <!-- JS files for doubly circular linked list module -->
+  <script src="core/doublyCircularLogic.js"></script>
+  <script src="visual/doublyCircularAnimate.js"></script>
+  <script src="ui/doublyCircularControls.js"></script>
+</body>
+</html>

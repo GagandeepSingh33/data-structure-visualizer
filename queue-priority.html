@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Priority Queue Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Priority Queue Visualizer</h1>
+    <p>
+      Visualize how a priority queue always removes the element with the highest
+      priority instead of simply following arrival order.
+    </p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="queue-visualizer-section">
+      <!-- Definition -->
+      <section id="queue-definition-section">
+        <h2>What is a Priority Queue?</h2>
+        <p>
+          A priority queue is an abstract data type in which each element is
+          associated with a <strong>priority</strong>, and removal chooses
+          the element with the highest priority (or lowest, depending on mode).
+          This means the dequeue order is based on priority, not strictly on
+          First-In, First-Out arrival time. 
+        </p>
+      </section>
+
+      <!-- Initialization -->
+      <section id="queue-init-section">
+        <h2>Priority Queue Initialization</h2>
+        <p class="small-note">
+          Start with an empty priority queue, or create one from comma-separated
+          values. You can use plain numbers like <code>10,20,30</code> or
+          value:priority pairs like <code>A:3,B:1</code>. Plain numbers are
+          treated as both value and priority. 
+        </p>
+
+        <div class="init-row">
+          <label>
+            Initial elements (comma-separated, optional):
+            <input
+              type="text"
+              id="queue-elements-input"
+              placeholder="e.g., 10,20,30 or A:3,B:1"
+            />
+          </label>
+          <button id="queue-init-btn">Create Priority Queue</button>
+          <button id="queue-clear-btn">Clear Queue</button>
+        </div>
+
+        <!-- Priority mode buttons -->
+        <div class="priority-mode-row">
+          <span class="buttons-label">Priority mode:</span>
+          <div class="buttons-group">
+            <button
+              type="button"
+              class="priority-mode-btn active"
+              data-mode="higher"
+            >
+              Higher number = higher priority
+            </button>
+            <button
+              type="button"
+              class="priority-mode-btn"
+              data-mode="lower"
+            >
+              Lower number = higher priority
+            </button>
+          </div>
+        </div>
+
+        <p id="queue-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization -->
+      <section id="queue-visual-section">
+        <h2>Priority Queue View</h2>
+        <p class="small-note">
+          The priority queue is shown as a row of items with their priorities.
+          Elements are ordered so dequeue always removes the highest-priority
+          element currently in the structure.
+        </p>
+
+        <div id="queue-view-wrapper">
+          <div id="queue-container">
+            <span class="small-note">
+              Priority queue is empty (no elements with assigned priorities).
+            </span>
+          </div>
+        </div>
+
+        <p id="queue-size-label"></p>
+        <p id="queue-legend-inline" class="small-note"></p>
+      </section>
+
+      <!-- Controls -->
+      <section id="queue-controls-section">
+        <h2>Priority Queue Operations</h2>
+        <p class="small-note">
+          Use these controls to insert elements with priorities and remove the
+          highest-priority element. You can also inspect the current top element
+          and size of the priority queue. 
+        </p>
+
+        <div class="controls-row">
+          <label>
+            Value (for insert/search):
+            <input
+              type="text"
+              id="queue-value-input"
+              placeholder="e.g., 25 or X:4"
+            />
+          </label>
+        </div>
+
+        <div class="buttons-row queue-buttons-row">
+          <span class="buttons-label">Modify queue:</span>
+          <div class="buttons-group">
+            <button class="queue-op-btn" data-op="enqueue">Insert (Enqueue)</button>
+            <button class="queue-op-btn" data-op="dequeue">Remove Max Priority</button>
+            <button class="queue-op-btn" data-op="clear-all">Clear All</button>
+          </div>
+        </div>
+
+        <div class="buttons-row queue-buttons-row">
+          <span class="buttons-label">Inspect queue:</span>
+          <div class="buttons-group">
+            <button class="queue-op-btn" data-op="front">Peek Highest Priority</button>
+            <button class="queue-op-btn" data-op="rear">Peek Lowest Priority</button>
+            <button class="queue-op-btn" data-op="is-empty">Is Empty?</button>
+            <button class="queue-op-btn" data-op="size">Size</button>
+          </div>
+        </div>
+
+        <div class="buttons-row queue-buttons-row">
+          <span class="buttons-label">Search (optional):</span>
+          <div class="buttons-group">
+            <button class="queue-op-btn" data-op="search-value">Search Value</button>
+          </div>
+        </div>
+
+        <p id="queue-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="queue-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="queue-explanation-box">
+          Initialize the priority queue or pick an operation to see how elements
+          are ordered by priority and which element is removed next.
+        </div>
+        <p id="queue-complexity-info" class="small-note"></p>
+      </section>
+
+      <!-- Legend -->
+      <section id="queue-legend-section">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active element / currently affected by insert, remove, or peek</li>
+          <li><span class="legend-box pointer"></span> New highest-priority position after an operation</li>
+          <li><span class="legend-box target"></span> Element matched during a search</li>
+        </ul>
+      </section>
+    </section>
+
+    <div class="page-footer">
+      <a class="back-link" href="queue.html">← Back to Queue Types</a>
+    </div>
+  </main>
+
+  <!-- Make priorityMode truly global and trigger resort on change -->
+  <script>
+    window.priorityMode = "higher";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const modeButtons = document.querySelectorAll(".priority-mode-btn");
+      modeButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          modeButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          window.priorityMode = btn.dataset.mode; // "higher" or "lower"
+
+          // If a global priorityQueue instance exists, resort and re-render
+          if (window.priorityQueue && window.QueueAnimatorPriority) {
+            window.priorityQueue.resortByMode();
+            window.QueueAnimatorPriority.renderState(
+              window.priorityQueue.snapshot()
+            );
+          }
+        });
+      });
+    });
+  </script>
+
+  <script src="core/priorityQueueLogic.js"></script>
+  <script src="visual/queuePriorityAnimate.js"></script>
+  <script src="ui/queuePriorityControls.js"></script>
+</body>
+</html>

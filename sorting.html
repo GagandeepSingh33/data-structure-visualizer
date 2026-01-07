@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sorting Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Sorting Visualizer</h1>
+    <p>See how different sorting algorithms reorder an array step by step.</p>
+  </header>
+
+  <!-- Main area: same layout style as array page -->
+  <main class="ds-main array-page-main">
+    <!-- SORTING VISUALIZER (container like array-visualizer-section) -->
+    <section id="sorting-visualizer-section">
+
+      <!-- Sorting definition -->
+      <section id="sorting-definition-section">
+        <h2>What is Sorting?</h2>
+        <p>
+          A sorting algorithm arranges the elements of an array or list into a specific order, typically ascending or descending. 
+        </p>
+        <p>
+          Different sorting techniques have different time and space complexities, and are chosen based on input size, constraints, and required stability. 
+        </p>
+      </section>
+
+      <!-- Sorting Algorithms List (acts like your init card) -->
+      <section id="sorting-selector-section">
+        <h2>Sorting Algorithms</h2>
+        <p class="small-note">
+          Pick an algorithm below to open its dedicated visualization page.
+        </p>
+
+        <div class="sorting-buttons-grid">
+          <a class="ds-tab ds-tab-large" href="sorting-bubble.html">
+            Bubble Sort
+          </a>
+          <a class="ds-tab ds-tab-large" href="sorting-selection.html">
+            Selection Sort
+          </a>
+
+          <a class="ds-tab ds-tab-large" href="sorting-insertion.html">
+            Insertion Sort
+          </a>
+          <a class="ds-tab ds-tab-large" href="sorting-shell.html">
+            Shell Sort
+          </a>
+
+          <a class="ds-tab ds-tab-large" href="sorting-merge.html">
+            Merge Sort
+          </a>
+          <a class="ds-tab ds-tab-large" href="sorting-quick.html">
+            Quick Sort
+          </a>
+
+          <a class="ds-tab ds-tab-large" href="sorting-heap.html">
+            Heap Sort
+          </a>
+          <a class="ds-tab ds-tab-large" href="sorting-counting.html">
+            Counting Sort
+          </a>
+
+          <a class="ds-tab ds-tab-large" href="sorting-radix.html">
+            Radix Sort
+          </a>
+        </div>
+
+        
+        <p class="ds-selector-hint">
+            Each page explains how the algorithm works and shows its time and space complexity. 
+        </p>
+      </section>
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="index.html">← Back to Data Structure Visualizer</a>
+    </div>
+  </main>
+
+  <!-- JS files (optional, if you later add interactions here) -->
+  <!-- <script src="core/sortingLogic.js"></script> -->
+  <!-- <script src="visual/sortingAnimate.js"></script> -->
+  <!-- <script src="ui/sortingControls.js"></script> -->
+</body>
+</html>

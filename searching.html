@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Searching Algorithms Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="searching-body">
+  <header class="ds-header ds-header-center">
+    <h1>Searching Algorithms</h1>
+    <p>Understand how different search techniques locate a target inside an array.</p>
+  </header>
+
+  <main class="ds-main">
+    <!-- 1. Searching -->
+    <section id="searching-definition-section" class="ds-card">
+      <h2>What is Searching?</h2>
+      <p>
+        Searching algorithms are methods used to find the position of a target value within a
+        collection of elements such as an array or list. 
+      </p>
+      <p>
+        Different searching techniques trade off simplicity, speed, and the requirement that the
+        data be sorted beforehand. 
+      </p>
+    </section>
+
+    <!-- 2. Linear Search -->
+    <section id="linear-definition-section" class="ds-card">
+      <h2>Linear Search</h2>
+      <p>
+        Linear search scans each element one by one from the beginning until it finds the target
+        or reaches the end of the array. 
+      </p>
+      <p>
+        It works on any array (sorted or unsorted) but has time complexity O(n), so it becomes slow
+        for large datasets. 
+      </p>
+    </section>
+
+    <!-- 3. Binary Search -->
+    <section id="binary-definition-section" class="ds-card">
+      <h2>Binary Search</h2>
+      <p>
+        Binary search works on sorted arrays by repeatedly halving the search range and comparing
+        the middle element with the target. 
+      </p>
+      <p>
+        This divide-and-conquer approach runs in O(log n) time, making it much faster than linear
+        search for large sorted collections. 
+      </p>
+    </section>
+
+    <!-- Buttons row -->
+    <section id="searching-buttons-section" class="ds-card">
+      <h2>View Visualizations</h2>
+      <div class="ds-selector-row">
+        <a class="ds-tab ds-tab-large" href="search-linear.html">Linear Search</a>
+        <a class="ds-tab ds-tab-large" href="search-binary.html">Binary Search</a>
+      </div>
+      <p class="ds-selector-hint">
+        Click a button above to open an interactive visualization of that search algorithm.
+      </p>
+    </section>
+
+    <div class="page-footer">
+      <a class="back-link" href="index.html">← Back to Home</a>
+    </div>
+  </main>
+</body>
+</html>

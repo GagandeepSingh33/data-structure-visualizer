@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Linked List Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="ds-header ds-header-center">
+    <h1>Linked List Visualizer</h1>
+    <p>Understand different types of linked lists before exploring their behavior.</p>
+  </header>
+
+  <main class="ds-main array-page-main">
+    <section id="ll-types-flowchart-section">
+      <h2>What is a Linked List?</h2>
+      <p>
+        A linked list is a linear data structure made of nodes, where each node stores a value and a pointer to the next node.
+        Nodes do not live in one contiguous block of memory like an array, so you must follow pointers one by one starting from the head.
+      </p>
+
+      <h2 style="margin-top: 20px;">Linked List Types</h2>
+
+      <div class="ll-flowchart-svg-wrapper">
+        <!-- Fixed viewBox so lines stay perfectly aligned -->
+        <svg
+          id="ll-flowchart-svg"
+          viewBox="0 0 800 400"
+          width="100%"
+          height="auto"
+        >
+          <defs>
+            <style>
+              .node-box {
+                fill: #020617;
+                stroke: #374151;
+                stroke-width: 2;
+                rx: 12;
+                ry: 12;
+              }
+              .node-text {
+                fill: #e5e7eb;
+                font-family: system-ui, -apple-system, sans-serif;
+                font-size: 14px;
+                text-anchor: middle;
+                dominant-baseline: middle;
+              }
+              .connector {
+                stroke: #4b5563;
+                stroke-width: 2;
+              }
+            </style>
+          </defs>
+
+          <!-- Root: Linked List at (400, 65) -->
+          <g class="node-group" data-id="root">
+            <rect class="node-box" x="300" y="40" width="200" height="50"></rect>
+            <text class="node-text" x="400" y="65">Linked List</text>
+          </g>
+
+          <!-- Middle row: Singly, Circular, Doubly (y ~ 170) -->
+          <!-- Singly at (200, 170) -->
+          <g class="node-group" data-id="singly">
+            <rect class="node-box" x="120" y="145" width="160" height="50"></rect>
+            <text class="node-text" x="200" y="162">Singly</text>
+            <text class="node-text" x="200" y="182">Linked List</text>
+          </g>
+
+          <!-- Circular at (400, 170) -->
+          <g class="node-group" data-id="circular">
+            <rect class="node-box" x="320" y="145" width="160" height="50"></rect>
+            <text class="node-text" x="400" y="162">Circular</text>
+            <text class="node-text" x="400" y="182">Linked List</text>
+          </g>
+
+          <!-- Doubly at (600, 170) -->
+          <g class="node-group" data-id="doubly">
+            <rect class="node-box" x="520" y="145" width="160" height="50"></rect>
+            <text class="node-text" x="600" y="162">Doubly</text>
+            <text class="node-text" x="600" y="182">Linked List</text>
+          </g>
+
+          <!-- Bottom row: Singly Circular and Doubly Circular (y ~ 290) -->
+          <!-- Singly Circular at (300, 290) -->
+          <g class="node-group" data-id="singly-circular">
+            <rect class="node-box" x="220" y="265" width="160" height="50"></rect>
+            <text class="node-text" x="300" y="282">Singly Circular</text>
+            <text class="node-text" x="300" y="302">Linked List</text>
+          </g>
+
+          <!-- Doubly Circular at (500, 290) -->
+          <g class="node-group" data-id="doubly-circular">
+            <rect class="node-box" x="420" y="265" width="160" height="50"></rect>
+            <text class="node-text" x="500" y="282">Doubly Circular</text>
+            <text class="node-text" x="500" y="302">Linked List</text>
+          </g>
+
+          <!-- Connectors -->
+          <!-- Root down to middle center -->
+          <line class="connector" x1="400" y1="90" x2="400" y2="120"></line>
+          <!-- Horizontal line through three middle nodes -->
+          <line class="connector" x1="200" y1="140" x2="600" y2="140"></line>
+          <!-- Taps to middle nodes -->
+          <line class="connector" x1="200" y1="140" x2="200" y2="145"></line>
+          <line class="connector" x1="400" y1="140" x2="400" y2="145"></line>
+          <line class="connector" x1="600" y1="140" x2="600" y2="145"></line>
+
+          <!-- From Circular to bottom row -->
+          <line class="connector" x1="400" y1="195" x2="400" y2="230"></line>
+          <!-- Horizontal between bottom children -->
+          <line class="connector" x1="300" y1="230" x2="500" y2="230"></line>
+          <!-- Taps to bottom nodes -->
+          <line class="connector" x1="300" y1="230" x2="300" y2="265"></line>
+          <line class="connector" x1="500" y1="230" x2="500" y2="265"></line>
+        </svg>
+      </div>
+
+      <p class="small-note ll-flowchart-note">
+        Hover a node to preview it. Click a node to open the corresponding page.
+      </p>
+    </section>
+
+    <div class="page-footer">
+      <a class="back-link" href="index.html">← Back to Data Structure Visualizer</a>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const svg = document.getElementById("ll-flowchart-svg");
+      if (!svg) return;
+
+      const groups = Array.from(svg.querySelectorAll("g.node-group"));
+
+      groups.forEach((g) => {
+        g.addEventListener("click", () => {
+          const id = g.getAttribute("data-id");
+          if (!id) return;
+
+          let target = null;
+          if (id === "singly") target = "linked-list-singly.html";
+          else if (id === "doubly") target = "linked-list-doubly.html";
+          else if (id === "singly-circular") target = "linked-list-singly-circular.html";
+          else if (id === "doubly-circular") target = "linked-list-doubly-circular.html";
+          else if (id === "root") target = "linked-list.html"; // overview
+
+          if (target) {
+            window.location.href = target;
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

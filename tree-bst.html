@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Binary Search Tree Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Binary Search Tree (BST) Visualizer</h1>
+    <p>
+      Build a BST from values, explore traversals, analyze its type, perform insert/delete operations,
+      and see example shapes like complete, full, and skewed trees.
+    </p>
+  </header>
+
+  <main class="ds-main array-page-main">
+    <section id="bst-visualizer-section">
+
+      <!-- Definition -->
+      <section id="bst-definition-section" class="ds-card">
+        <h2>What is a Binary Search Tree?</h2>
+        <p>
+          A Binary Search Tree (BST) is a binary tree where each node’s left subtree contains only
+          keys less than the node’s key, and the right subtree contains only keys greater than it.
+          This ordering lets search, insertion, and deletion follow a path from the root, comparing
+          at most one node per level.
+        </p>
+      </section>
+
+      <!-- Configuration: initial values -->
+      <section id="bst-config-section" class="ds-card">
+        <h2>BST Configuration</h2>
+        <p class="small-note">
+          Enter distinct numeric keys separated by commas. The tree size is taken automatically
+          from the number of values you provide.
+        </p>
+
+        <div class="init-row">
+          <label>
+            Initial elements (comma-separated, unique):
+            <input
+              type="text"
+              id="bst-elements-input"
+              placeholder="e.g., 8, 3, 10, 1, 6, 14"
+            />
+          </label>
+        </div>
+
+        <div class="buttons-row">
+          <button id="bst-build-btn">Build BST</button>
+          <button id="bst-reset-btn">Reset</button>
+        </div>
+
+        <p id="bst-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Tree view -->
+      <section id="bst-visual-section" class="ds-card">
+        <h2>BST View</h2>
+        <p class="small-note">
+          The tree is drawn level by level. Smaller keys go to the left child, larger keys to the right.
+        </p>
+
+        <div class="array-rows">
+          <div class="array-row">
+            <div class="row-title">
+              Tree view (root at top)
+            </div>
+            <div id="bst-tree-container" class="heap-tree"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Traversals -->
+      <section id="bst-traversal-section" class="ds-card">
+        <h2>Traversals</h2>
+        <p class="small-note" id="bst-traversal-def">
+          After building the tree you can run depth-first traversals:
+          Inorder (Left, Root, Right), Preorder (Root, Left, Right), and Postorder (Left, Right, Root),
+          each visiting nodes in a different order.
+        </p>
+
+        <div class="buttons-row">
+          <button id="bst-inorder-btn" class="bst-traversal-btn" disabled>Inorder Traversal</button>
+          <button id="bst-preorder-btn" class="bst-traversal-btn" disabled>Preorder Traversal</button>
+          <button id="bst-postorder-btn" class="bst-traversal-btn" disabled>Postorder Traversal</button>
+        </div>
+
+        <p id="bst-traversal-output" class="small-note"></p>
+      </section>
+
+      <!-- Tree type -->
+      <section id="bst-type-section" class="ds-card">
+        <h2>Tree Type (Current BST)</h2>
+        <p class="small-note" id="bst-type-def">
+          Once a BST is built, you can check whether it is complete, full, left-skewed, or right-skewed:
+          a complete tree is filled level by level from the left, a full tree has 0 or 2 children at every node,
+          and a skewed tree has all nodes leaning to one side.
+        </p>
+
+        <div class="buttons-row">
+          <button id="bst-check-type-btn" disabled>Check Tree Type</button>
+        </div>
+
+        <p id="bst-type-output" class="small-note"></p>
+      </section>
+
+      <!-- BST operations: insert / delete -->
+      <section id="bst-ops-section" class="ds-card">
+        <h2>BST Operations</h2>
+        <p class="small-note">
+          After building the tree, you can insert a new key or delete an existing key.
+          The structure will update, and the steps will be shown in the explanation area.
+        </p>
+
+        <div class="controls-row">
+          <label>
+            Key:
+            <input
+              type="text"
+              id="bst-op-key-input"
+              placeholder="numeric key"
+            />
+          </label>
+        </div>
+
+        <div class="buttons-row">
+          <button id="bst-insert-btn" disabled>Insert Key</button>
+          <button id="bst-delete-btn" disabled>Delete Key</button>
+        </div>
+
+        <p id="bst-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Tree type examples -->
+      <section id="bst-examples-section" class="ds-card">
+        <h2>Tree Type Examples</h2>
+        <p class="small-note">
+          Click a button to see an example tree of that type built with preset keys.
+          This does not change your main BST above.
+        </p>
+
+        <div class="buttons-row">
+          <button id="bst-example-binary-btn">Binary Tree</button>
+          <button id="bst-example-complete-btn">Complete Tree</button>
+          <button id="bst-example-full-btn">Full Tree</button>
+        </div>
+
+        <div class="buttons-row">
+          <button id="bst-example-left-skewed-btn">Left-Skewed</button>
+          <button id="bst-example-right-skewed-btn">Right-Skewed</button>
+        </div>
+
+        <p class="small-note" id="bst-examples-note"></p>
+
+        <div class="array-rows">
+          <div class="array-row">
+            <div class="row-title">
+              Example tree view
+            </div>
+            <div id="bst-example-tree-container" class="heap-tree"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Explanation + playback (shared) -->
+      <section id="bst-explanation-section" class="ds-card">
+        <h2>Step Explanation</h2>
+
+        <div class="heap-playback-controls">
+          <button id="bst-prev-step-btn">◀ Prev</button>
+          <button id="bst-play-pause-btn">Pause</button>
+          <button id="bst-next-step-btn">Next ▶</button>
+
+          <span class="heap-speed-label">Speed:</span>
+          <button id="bst-speed-decrease">−</button>
+          <input
+            type="range"
+            id="bst-speed-slider"
+            min="1"
+            max="5"
+            step="1"
+            value="3"
+          />
+          <button id="bst-speed-increase">+</button>
+        </div>
+
+        <div id="bst-explanation-box">
+          Enter initial elements and click "Build BST" to construct the tree. Then use traversal, type,
+          and operation buttons to explore how the structure behaves. Each step will be described here.
+        </div>
+      </section>
+
+      <!-- Legend -->
+      <section id="bst-legend-section" class="ds-card">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active / visited node</li>
+          <li><span class="legend-box shifted"></span> Node being re-linked or emphasized</li>
+          <li><span class="legend-box invalid"></span> Invalid operation or not possible with current elements</li>
+        </ul>
+      </section>
+    </section>
+
+    <div class="page-footer">
+      <a class="back-link" href="tree.html">← Back to Tree Types</a>
+    </div>
+  </main>
+
+  <!-- JS files for BST -->
+  <script src="core/bstLogic.js"></script>
+  <script src="visual/bstAnimate.js"></script>
+  <script src="ui/bstControls.js"></script>
+</body>
+</html>

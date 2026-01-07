@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AVL Tree Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="ds-header ds-header-center">
+    <h1>AVL Tree Visualizer</h1>
+    <p>
+      Build a self-balancing AVL tree, watch rotations keep it balanced, run traversals,
+      and see examples of LL, RR, LR, and RL rotation cases.
+    </p>
+  </header>
+
+  <main class="ds-main array-page-main">
+    <section id="avl-visualizer-section">
+
+      <!-- Definition -->
+      <section id="avl-definition-section" class="ds-card">
+        <h2>What is an AVL Tree?</h2>
+        <p>
+          An AVL tree is a self-balancing Binary Search Tree where the height difference
+          (balance factor) between the left and right subtrees of every node is at most 1.
+          When the tree becomes unbalanced after insert or delete operations, rotations
+          (LL, RR, LR, RL) are applied to restore balance while keeping the BST property.
+        </p>
+      </section>
+
+      <!-- Configuration -->
+      <section id="avl-config-section" class="ds-card">
+        <h2>AVL Configuration</h2>
+        <p class="small-note">
+          Enter distinct numeric keys separated by commas. The AVL tree will be built by
+          inserting them one by one and automatically performing rotations whenever
+          the balance factor goes outside −1, 0, 1. 
+        </p>
+
+        <div class="init-row">
+          <label>
+            Initial elements (comma-separated, unique):
+            <input
+              type="text"
+              id="avl-elements-input"
+              placeholder="e.g., 30, 20, 40, 10, 25, 50"
+            />
+          </label>
+        </div>
+
+        <div class="buttons-row">
+          <button id="avl-build-btn">Build AVL Tree</button>
+          <button id="avl-reset-btn">Reset</button>
+        </div>
+
+        <p id="avl-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Tree view -->
+      <section id="avl-visual-section" class="ds-card">
+        <h2>AVL Tree View</h2>
+        <p class="small-note">
+          The tree is drawn level by level. Insertion and deletion automatically trigger
+          rotations to keep the tree height-balanced. 
+        </p>
+
+        <div class="array-rows">
+          <div class="array-row">
+            <div class="row-title">
+              AVL tree view (root at top)
+            </div>
+            <div id="avl-tree-container" class="heap-tree"></div>
+          </div>
+        </div>
+
+        <!-- Inline step text under the tree -->
+        <p id="avl-inline-explanation" class="small-note"></p>
+      </section>
+
+      <!-- Traversals -->
+      <section id="avl-traversal-section" class="ds-card">
+        <h2>Traversals</h2>
+        <p class="small-note" id="avl-traversal-def">
+          After building the tree you can run depth-first traversals:
+          Inorder (Left, Root, Right), Preorder (Root, Left, Right), and Postorder (Left, Right, Root).
+          Inorder traversal of an AVL tree always visits keys in sorted order. 
+        </p>
+
+        <div class="buttons-row">
+          <button id="avl-inorder-btn" class="avl-traversal-btn" disabled>Inorder Traversal</button>
+          <button id="avl-preorder-btn" class="avl-traversal-btn" disabled>Preorder Traversal</button>
+          <button id="avl-postorder-btn" class="avl-traversal-btn" disabled>Postorder Traversal</button>
+        </div>
+
+        <p id="avl-traversal-output" class="small-note"></p>
+      </section>
+
+      <!-- Properties -->
+      <section id="avl-properties-section" class="ds-card">
+        <h2>AVL Properties</h2>
+        <p class="small-note">
+          Check the height of the tree and whether every node satisfies the AVL balance factor
+          condition (−1, 0, or +1). [web:158]
+        </p>
+
+        <div class="buttons-row">
+          <button id="avl-check-props-btn" disabled>Check AVL Properties</button>
+        </div>
+
+        <p id="avl-props-output" class="small-note"></p>
+      </section>
+
+      <!-- Operations -->
+      <section id="avl-ops-section" class="ds-card">
+        <h2>AVL Operations</h2>
+        <p class="small-note">
+          After building the tree, insert a new key or delete an existing key.
+          The AVL tree will perform LL, RR, LR, or RL rotations as needed to remain balanced. 
+        </p>
+
+        <div class="controls-row">
+          <label>
+            Key:
+            <input
+              type="text"
+              id="avl-op-key-input"
+              placeholder="numeric key"
+            />
+          </label>
+        </div>
+
+        <div class="buttons-row">
+          <button id="avl-insert-btn" disabled>Insert Key</button>
+          <button id="avl-delete-btn" disabled>Delete Key</button>
+        </div>
+
+        <p id="avl-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Rotation examples -->
+      <section id="avl-examples-section" class="ds-card">
+        <h2>Rotation Case Examples</h2>
+        <p class="small-note">
+          Click a button to see a small example where that rotation type occurs while inserting keys.
+          These example trees are independent from your main AVL tree above. 
+        </p>
+
+        <div class="buttons-row">
+          <button id="avl-example-ll-btn">LL Case Example</button>
+          <button id="avl-example-rr-btn">RR Case Example</button>
+        </div>
+
+        <div class="buttons-row">
+          <button id="avl-example-lr-btn">LR Case Example</button>
+          <button id="avl-example-rl-btn">RL Case Example</button>
+        </div>
+
+        <p class="small-note" id="avl-examples-note"></p>
+
+        <div class="array-rows">
+          <div class="array-row">
+            <div class="row-title">
+              Rotation example view
+            </div>
+            <div id="avl-example-tree-container" class="heap-tree"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Explanation + playback -->
+      <section id="avl-explanation-section" class="ds-card">
+        <h2>Step Explanation</h2>
+
+        <div class="heap-playback-controls">
+          <button id="avl-prev-step-btn">◀ Prev</button>
+          <button id="avl-play-pause-btn">Pause</button>
+          <button id="avl-next-step-btn">Next ▶</button>
+
+          <span class="heap-speed-label">Speed:</span>
+          <button id="avl-speed-decrease">−</button>
+          <input
+            type="range"
+            id="avl-speed-slider"
+            min="1"
+            max="5"
+            step="1"
+            value="3"
+          />
+          <button id="avl-speed-increase">+</button>
+        </div>
+
+        <div id="avl-explanation-box">
+          Enter initial elements and click "Build AVL Tree" to construct the tree. Rotations and
+          other operations will be explained here step by step, including which nodes participate
+          in each LL, RR, LR, or RL case.
+        </div>
+      </section>
+
+      <!-- Legend -->
+      <section id="avl-legend-section" class="ds-card">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active / visited node</li>
+          <li><span class="legend-box shifted"></span> Nodes involved in a rotation or re-linking</li>
+          <li><span class="legend-box invalid"></span> Invalid operation or not possible with current elements</li>
+        </ul>
+      </section>
+    </section>
+
+    <div class="page-footer">
+      <a class="back-link" href="tree.html">← Back to Tree Types</a>
+    </div>
+  </main>
+
+  <script src="core/avlLogic.js"></script>
+  <script src="visual/avlAnimate.js"></script>
+  <script src="ui/avlControls.js"></script>
+</body>
+</html>

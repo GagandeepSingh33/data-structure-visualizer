@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Singly Linked List Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Singly Linked List Visualizer</h1>
+    <p>See how nodes, pointers, and traversal work step by step in a singly linked list.</p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="sll-visualizer-section">
+      <!-- Definition -->
+      <section id="sll-definition-section">
+        <h2>What is a Singly Linked List?</h2>
+        <p>
+          A singly linked list is a sequence of nodes where each node stores a value and a pointer to the next node.
+          Nodes are not stored in contiguous memory, so you can only reach a position by traversing from the head one pointer at a time.
+        </p>
+      </section>
+
+      <!-- Initialization -->
+      <section id="sll-init-section">
+        <h2>List Initialization</h2>
+        <p class="small-note">
+          Start with an empty list, or create one from comma-separated values. Each value becomes a node linked from left to right.
+        </p>
+        <div class="init-row">
+          <label>
+            Initial elements (comma-separated, optional):
+            <input type="text" id="sll-elements-input" placeholder="e.g., 10,20,30" />
+          </label>
+          <button id="sll-init-btn">Create List</button>
+          <button id="sll-clear-btn">Clear List</button>
+        </div>
+        <p id="sll-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization -->
+      <section id="sll-visual-section">
+        <h2>List View</h2>
+        <p class="small-note">
+          The <strong>head</strong> pointer refers to the first node. Each arrow shows the <strong>next</strong> pointer of a node.
+        </p>
+        <div class="sll-view-wrapper">
+          <div id="sll-head-label">head →</div>
+          <div id="sll-list-container"></div>
+        </div>
+        <p id="sll-length-info"></p>
+      </section>
+
+      <!-- Controls -->
+      <section id="sll-controls-section">
+        <h2>Linked List Operations</h2>
+        <p class="small-note">
+          All operations traverse from the head using pointers, not random indices. Insertion or deletion at head can be O(1);
+          other positions require O(n) traversal.
+        </p>
+
+        <!-- Inputs -->
+        <div class="controls-row">
+          <label>
+            Index (0-based, optional):
+            <input type="number" id="sll-index-input" min="0" />
+          </label>
+          <label>
+            Value (for insert/search/delete by value):
+            <input type="text" id="sll-value-input" />
+          </label>
+          <label>
+            Target value (for insert before/after element):
+            <input type="text" id="sll-target-value-input" />
+          </label>
+        </div>
+
+        <!-- Insert at ends -->
+        <div class="buttons-row sll-buttons-row">
+          <span class="buttons-label">Insert at ends:</span>
+          <div class="buttons-group">
+            <button class="sll-op-btn" data-op="insert-head">Insert at Head</button>
+            <button class="sll-op-btn" data-op="insert-tail">Insert at End</button>
+          </div>
+        </div>
+
+        <!-- Insert by position/value -->
+        <div class="buttons-row sll-buttons-row">
+          <span class="buttons-label">Insert by position/value:</span>
+          <div class="buttons-group">
+            <button class="sll-op-btn" data-op="insert-index">Insert at Index</button>
+            <button class="sll-op-btn" data-op="insert-before">Insert Before Element</button>
+            <button class="sll-op-btn" data-op="insert-after">Insert After Element</button>
+          </div>
+        </div>
+
+        <!-- Delete at ends -->
+        <div class="buttons-row sll-buttons-row">
+          <span class="buttons-label">Delete at ends:</span>
+          <div class="buttons-group">
+            <button class="sll-op-btn" data-op="delete-head">Delete Head</button>
+            <button class="sll-op-btn" data-op="delete-tail">Delete at End</button>
+          </div>
+        </div>
+
+        <!-- Delete by position/value -->
+        <div class="buttons-row sll-buttons-row">
+          <span class="buttons-label">Delete by position/value:</span>
+          <div class="buttons-group">
+            <button class="sll-op-btn" data-op="delete-index">Delete at Index</button>
+            <button class="sll-op-btn" data-op="delete-value">Delete Element</button>
+          </div>
+        </div>
+
+        <!-- Search -->
+        <div class="buttons-row sll-buttons-row">
+          <span class="buttons-label">Search:</span>
+          <div class="buttons-group">
+            <button class="sll-op-btn" data-op="search-value">Search by Value</button>
+            <button class="sll-op-btn" data-op="search-index">Search by Index</button>
+          </div>
+        </div>
+
+        <!-- Traversal -->
+        <div class="buttons-row sll-buttons-row">
+          <span class="buttons-label">Traversal:</span>
+          <div class="buttons-group">
+            <button class="sll-op-btn" data-op="traverse">Traverse List</button>
+          </div>
+        </div>
+
+        <p id="sll-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="sll-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="sll-explanation-box">
+          Initialize the list or pick an operation to see pointer traversal and updates step by step.
+        </div>
+        <p id="sll-complexity-info" class="small-note"></p>
+      </section>
+
+      <!-- Legend -->
+      <section id="sll-legend-section">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active node / currently visited during traversal</li>
+          <li><span class="legend-box pointer"></span> Updated pointer (next reference changes here)</li>
+          <li><span class="legend-box target"></span> Target node for insertion, deletion, or search</li>
+          <li><span class="legend-box removed"></span> Node being deleted (fades out)</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="linked-list.html">← Back to Linked List Types</a>
+    </div>
+  </main>
+
+  <!-- JS files for singly linked list module -->
+  <script src="core/linkedListLogic.js"></script>
+  <script src="visual/linkedListAnimate.js"></script>
+  <script src="ui/linkedListControls.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tree Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Tree Visualizer</h1>
+    <p>Understand tree basics and then explore different balanced and search trees.</p>
+  </header>
+
+  <main class="ds-main array-page-main">
+    <!-- Definition section -->
+    <section id="tree-definition-section" class="ds-card">
+      <h2>What is a Tree?</h2>
+      <p>
+        A tree is a non-linear, hierarchical data structure made of nodes connected by edges.
+        The topmost node is called the root, internal nodes have one or more children, and
+        nodes with no children are called leaves. Trees represent parent–child relationships
+        and are used in searching, indexing, file systems, and many other applications.
+      </p>
+    </section>
+
+    <!-- Types section with buttons -->
+    <section id="tree-types-section" class="ds-card">
+      <h2>Tree Types</h2>
+      <p>
+        Start with Binary Search Trees, then explore self-balancing trees and multiway search trees
+        used in databases and file systems.
+      </p>
+
+      <div class="ds-selector-row tree-type-row">
+        <a class="ds-tab ds-tab-large" href="tree-bst.html">Binary Search Tree (BST)</a>
+        <a class="ds-tab ds-tab-large" href="tree-avl.html">AVL Tree</a>
+        <a class="ds-tab ds-tab-large" href="tree-red-black.html">Red-Black Tree</a>
+        <a class="ds-tab ds-tab-large" href="tree-b.html">B-Tree</a>
+        <a class="ds-tab ds-tab-large" href="tree-b-plus.html">B+ Tree</a>
+      </div>
+
+      <p class="ds-selector-hint">
+        Click a type to open its dedicated visualizer page with operations, animations, and explanations.
+      </p>
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="index.html">← Back to Data Structure Visualizer</a>
+    </div>
+  </main>
+</body>
+</html>

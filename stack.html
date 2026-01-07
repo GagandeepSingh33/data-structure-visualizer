@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stack Visualizer (LIFO)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Stack Visualizer (LIFO)</h1>
+    <p>See how values are pushed and popped from the top of a stack following Last-In, First-Out order.</p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="stack-visualizer-section">
+      <!-- Definition -->
+      <section id="stack-definition-section">
+        <h2>What is a Stack?</h2>
+        <p>
+          A stack is a linear data structure that stores elements in a <strong>Last-In, First-Out</strong> (LIFO) order.
+          New elements are added using <strong>push</strong> and removed using <strong>pop</strong> only at one end,
+          called the <strong>top</strong> of the stack. Operations like push, pop, and peek typically run in constant time.
+        </p>
+      </section>
+
+      <!-- Initialization -->
+      <section id="stack-init-section">
+        <h2>Stack Initialization</h2>
+        <p class="small-note">
+          Start with an empty stack, or create one from comma-separated values. The last value in the list becomes
+          the top of the stack.
+        </p>
+        <div class="init-row">
+          <label>
+            Initial elements (comma-separated, optional):
+            <input type="text" id="stack-elements-input" placeholder="e.g., 10,20,30" />
+          </label>
+          <button id="stack-init-btn">Create Stack</button>
+          <button id="stack-clear-btn">Clear Stack</button>
+        </div>
+        <p id="stack-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization -->
+      <section id="stack-visual-section">
+        <h2>Stack View</h2>
+        <p class="small-note">
+          The stack is shown as a vertical column of items. The <strong>top</strong> element is highlighted at the upper end.
+          Push adds an item on top; pop removes from the top, leaving lower elements untouched.
+        </p>
+
+        <div id="stack-view-wrapper">
+          <div id="stack-container-label">top</div>
+          <div id="stack-container">
+            <!-- items rendered here by JS -->
+          </div>
+        </div>
+
+        <p id="stack-size-label"></p>
+      </section>
+
+      <!-- Controls -->
+      <section id="stack-controls-section">
+        <h2>Stack Operations</h2>
+        <p class="small-note">
+          Use these controls to push values, pop elements from the top, or inspect the current top and size of the stack.
+        </p>
+
+        <!-- Input -->
+        <div class="controls-row">
+          <label>
+            Value (for push/search):
+            <input type="text" id="stack-value-input" />
+          </label>
+        </div>
+
+        <!-- Primary operations -->
+        <div class="buttons-row stack-buttons-row">
+          <span class="buttons-label">Modify stack:</span>
+          <div class="buttons-group">
+            <button class="stack-op-btn" data-op="push">Push</button>
+            <button class="stack-op-btn" data-op="pop">Pop</button>
+            <button class="stack-op-btn" data-op="clear-all">Clear All</button>
+          </div>
+        </div>
+
+        <!-- Read-only operations -->
+        <div class="buttons-row stack-buttons-row">
+          <span class="buttons-label">Inspect stack:</span>
+          <div class="buttons-group">
+            <button class="stack-op-btn" data-op="peek">Peek (Top)</button>
+            <button class="stack-op-btn" data-op="is-empty">Is Empty?</button>
+            <button class="stack-op-btn" data-op="size">Size</button>
+          </div>
+        </div>
+
+        <!-- Optional search -->
+        <div class="buttons-row stack-buttons-row">
+          <span class="buttons-label">Search (optional):</span>
+          <div class="buttons-group">
+            <button class="stack-op-btn" data-op="search-value">Search Value</button>
+          </div>
+        </div>
+
+        <p id="stack-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="stack-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="stack-explanation-box">
+          Initialize the stack or pick an operation to see how elements move at the top of the stack.
+        </div>
+        <p id="stack-complexity-info" class="small-note"></p>
+      </section>
+
+      <!-- Legend -->
+      <section id="stack-legend-section">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active element / currently affected by push, pop, or peek</li>
+          <li><span class="legend-box pointer"></span> Updated top position after an operation</li>
+          <li><span class="legend-box target"></span> Element matched during a search</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="index.html">← Back to Data Structure Home</a>
+    </div>
+  </main>
+
+  <!-- JS files for stack module -->
+  <script src="core/stackLogic.js"></script>
+  <script src="visual/stackAnimate.js"></script>
+  <script src="ui/stackControls.js"></script>
+</body>
+</html>

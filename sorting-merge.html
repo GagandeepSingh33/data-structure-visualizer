@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Merge Sort Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Merge Sort Visualizer</h1>
+    <p>
+      Watch how Merge Sort recursively splits the array into halves and then merges sorted subarrays to form the final sorted list. 
+    </p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="merge-visualizer-section">
+
+      <!-- Definition -->
+      <section id="merge-definition-section">
+        <h2>What is Merge Sort?</h2>
+        <p>
+          Merge Sort is a divide-and-conquer algorithm that divides the input array into two halves,
+          recursively sorts each half, and then merges the sorted halves into a single sorted array. 
+        </p>
+        <p>
+          Because it always performs the same pattern of splitting and merging, Merge Sort runs in
+          O(n log n) time in the best, average, and worst cases and is stable but uses extra memory. 
+        </p>
+      </section>
+
+      <!-- Controls / initialization -->
+      <section id="merge-init-section">
+        <h2>Array Setup</h2>
+        <div class="init-row">
+          <label>
+            Size:
+            <input type="number" id="merge-size-input" min="2" max="30" />
+          </label>
+          <label>
+            Elements (comma-separated):
+            <input type="text" id="merge-elements-input" placeholder="e.g., 5,3,8,4,2" />
+          </label>
+          <button id="merge-init-btn">Create Array</button>
+        </div>
+        <p id="merge-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization area -->
+      <section id="merge-visual-section">
+        <h2>Merge Sort Animation</h2>
+        <div id="merge-array-container"></div>
+        <p id="merge-pass-info"></p>
+      </section>
+
+      <!-- Controls for stepping / playing -->
+      <section id="merge-controls-section">
+        <h2>Controls</h2>
+        <p class="small-note">
+          Step through splits and merges, run full animation, or reset the array.
+        </p>
+        <div class="buttons-row">
+          <button id="merge-prev-step-btn">Previous Step</button>
+          <button id="merge-next-step-btn">Next Step</button>
+          <button id="merge-play-btn">Play</button>
+          <button id="merge-reset-btn">Reset</button>
+        </div>
+        <p id="merge-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="merge-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="merge-explanation-box">
+          Initialize the array, then start the Merge Sort steps.
+        </div>
+      </section>
+
+      <!-- Complexity & legend -->
+      <section id="merge-legend-section">
+        <h2>Complexity &amp; Legend</h2>
+        <p>
+          Time complexity: O(n log n) in all cases because the array is always split and merged in the same pattern;
+          space complexity: O(n) extra for temporary arrays during merging. 
+        </p>
+        <ul>
+          <li><span class="legend-box active"></span> Current subarray being processed</li>
+          <li><span class="legend-box shifted"></span> Elements being merged into the temporary array</li>
+          <li><span class="legend-box sorted"></span> Elements already merged back into final order</li>
+        </ul>
+      </section>
+
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="sorting.html">← Back to Sorting Algorithms</a>
+    </div>
+  </main>
+
+  <!-- Single ES module entry -->
+  <script type="module" src="ui/mergeControls.js"></script>
+</body>
+</html>

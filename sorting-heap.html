@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Heap Sort Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Heap Sort Visualizer</h1>
+    <p>
+      Watch how Heap Sort builds a heap and repeatedly moves the extreme element (max or min)
+      to its final position to sort the array.
+    </p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="heap-visualizer-section">
+
+      <!-- Definition -->
+      <section id="heap-definition-section">
+        <h2>What is Heap Sort?</h2>
+        <p>
+          Heap Sort is a comparison-based sorting algorithm that first organizes the array into a
+          heap (max-heap or min-heap), then repeatedly swaps the root with a boundary element and
+          heapifies the remaining heap.
+        </p>
+        <p>
+          With a max-heap it places the largest elements at the end; with a min-heap it places the
+          smallest elements at the beginning. In both cases it runs in O(n log n) time and uses O(1)
+          extra space but is not stable.
+        </p>
+      </section>
+
+      <!-- Controls / initialization -->
+      <section id="heap-init-section">
+        <h2>Array Setup</h2>
+        <div class="init-row">
+          <label>
+            Size:
+            <input type="number" id="heap-size-input" min="2" max="30" />
+          </label>
+          <label>
+            Elements (comma-separated):
+            <input type="text" id="heap-elements-input" placeholder="e.g., 5,3,8,4,2" />
+          </label>
+
+          <div class="heap-type-group">
+            <span class="heap-type-label">Heap Type:</span>
+            <button type="button" id="heap-max-btn" class="heap-type-btn heap-type-btn-active">
+              Max Heap
+            </button>
+            <button type="button" id="heap-min-btn" class="heap-type-btn">
+              Min Heap
+            </button>
+          </div>
+
+          <button id="heap-init-btn">Create Array</button>
+        </div>
+        <p id="heap-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization area -->
+      <section id="heap-visual-section">
+        <h2>Heap Sort Animation</h2>
+
+        <!-- Linear array view -->
+        <div id="heap-array-container"></div>
+
+        <!-- Tree view with same class as heap visualizer -->
+        <div id="heap-tree-container" class="heap-tree"></div>
+
+        <p id="heap-pass-info"></p>
+      </section>
+
+      <!-- Controls for stepping / playing -->
+      <section id="heap-controls-section">
+        <h2>Controls</h2>
+        <p class="small-note">
+          Step through array build, heap construction, and extraction, run full animation, or reset the array.
+        </p>
+        <div class="buttons-row">
+          <button id="heap-prev-step-btn">Previous Step</button>
+          <button id="heap-next-step-btn">Next Step</button>
+          <button id="heap-play-btn">Play</button>
+          <button id="heap-reset-btn">Reset</button>
+        </div>
+        <p id="heap-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="heap-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="heap-explanation-box">
+          Initialize the array, then start the Heap Sort steps.
+        </div>
+      </section>
+
+      <!-- Complexity & legend -->
+      <section id="heap-legend-section">
+        <h2>Complexity &amp; Legend</h2>
+        <p>
+          Time complexity: O(n log n) in best, average, and worst cases; space complexity: O(1) extra
+          since the heap is stored in-place in the array; Heap Sort is not stable.
+        </p>
+        <ul>
+          <li><span class="legend-box active"></span> Node currently being heapified or highlighted</li>
+          <li><span class="legend-box shifted"></span> Elements being swapped or moved</li>
+          <li><span class="legend-box sorted"></span> Elements already moved to their final sorted positions</li>
+        </ul>
+      </section>
+
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="sorting.html">← Back to Sorting Algorithms</a>
+    </div>
+  </main>
+
+  <!-- 3 JS files -->
+  <script src="core/heapLogic.js"></script>
+  <script src="visual/heapAnimate.js"></script>
+  <script src="ui/heapControls.js"></script>
+</body>
+</html>

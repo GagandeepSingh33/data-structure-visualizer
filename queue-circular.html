@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Circular Queue Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="ds-header ds-header-center">
+    <h1>Circular Queue Visualizer</h1>
+    <p>
+      Visualize how elements move in a circular queue where the rear wraps around
+      to the front, efficiently reusing freed positions while still following FIFO order.
+    </p>
+  </header>
+
+  <main class="ds-main array-page-main">
+    <section id="queue-visualizer-section">
+      <!-- Definition -->
+      <section id="queue-definition-section">
+        <h2>What is a Circular Queue?</h2>
+        <p>
+          A circular queue is a <strong>First-In, First-Out</strong> data structure
+          where the last position is connected back to the first, forming a circle.
+          When the rear reaches the end of the array, it wraps to the beginning
+          if there is free space, avoiding wasted slots. 
+        </p>
+      </section>
+
+      <!-- Initialization -->
+      <section id="queue-init-section">
+        <h2>Circular Queue Initialization</h2>
+        <p class="small-note">
+          Start with an empty circular queue, or create one from comma-separated values.
+          The first value in the list becomes the logical front of the queue.
+        </p>
+        <div class="init-row">
+          <label>
+            Initial elements (comma-separated, optional):
+            <input
+              type="text"
+              id="queue-elements-input"
+              placeholder="e.g., 10,20,30"
+            />
+          </label>
+          <button id="queue-init-btn">Create Queue</button>
+          <button id="queue-clear-btn">Clear Queue</button>
+        </div>
+        <p id="queue-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization -->
+      <section id="queue-visual-section">
+        <h2>Circular Queue View</h2>
+        <p class="small-note">
+          The circular queue is shown as a ring of slots. The last position
+          connects back to the first, and the <strong>front</strong> and
+          <strong>rear</strong> move around the circle as you enqueue and dequeue.
+        </p>
+
+        <div id="circular-queue-wrapper">
+          <div id="circular-queue-ring">
+            <span class="small-note">
+              Queue is empty (no elements in the circular buffer).
+            </span>
+          </div>
+        </div>
+
+        <p id="queue-size-label"></p>
+        <p id="queue-legend-inline" class="small-note"></p>
+      </section>
+
+      <!-- Controls -->
+      <section id="queue-controls-section">
+        <h2>Circular Queue Operations</h2>
+        <p class="small-note">
+          Use these controls to enqueue values at the rear, dequeue from the front,
+          and observe how front and rear wrap around the circular buffer.
+        </p>
+
+        <div class="controls-row">
+          <label>
+            Value (for enqueue/search):
+            <input type="text" id="queue-value-input" />
+          </label>
+        </div>
+
+        <div class="buttons-row queue-buttons-row">
+          <span class="buttons-label">Modify queue:</span>
+          <div class="buttons-group">
+            <button class="queue-op-btn" data-op="enqueue">Enqueue</button>
+            <button class="queue-op-btn" data-op="dequeue">Dequeue</button>
+            <button class="queue-op-btn" data-op="clear-all">Clear All</button>
+          </div>
+        </div>
+
+        <div class="buttons-row queue-buttons-row">
+          <span class="buttons-label">Inspect queue:</span>
+          <div class="buttons-group">
+            <button class="queue-op-btn" data-op="front">Peek Front</button>
+            <button class="queue-op-btn" data-op="rear">Peek Rear</button>
+            <button class="queue-op-btn" data-op="is-empty">Is Empty?</button>
+            <button class="queue-op-btn" data-op="size">Size</button>
+          </div>
+        </div>
+
+        <div class="buttons-row queue-buttons-row">
+          <span class="buttons-label">Search (optional):</span>
+          <div class="buttons-group">
+            <button class="queue-op-btn" data-op="search-value">Search Value</button>
+          </div>
+        </div>
+
+        <p id="queue-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="queue-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="queue-explanation-box">
+          Initialize the circular queue or pick an operation to see how front and rear
+          move and wrap around the array.
+        </div>
+        <p id="queue-complexity-info" class="small-note"></p>
+      </section>
+
+      <!-- Legend -->
+      <section id="queue-legend-section">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active element / currently affected by enqueue, dequeue, or peek</li>
+          <li><span class="legend-box pointer"></span> Updated front or rear position after an operation</li>
+          <li><span class="legend-box target"></span> Element matched during a search</li>
+        </ul>
+      </section>
+    </section>
+
+    <div class="page-footer">
+      <a class="back-link" href="queue.html">← Back to Queue Types</a>
+    </div>
+  </main>
+
+  <script src="core/circularQueueLogic.js"></script>
+  <script src="visual/queueCircularAnimate.js"></script>
+  <script src="ui/queueCircularControls.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Insertion Sort Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Insertion Sort Visualizer</h1>
+    <p>
+      Watch how Insertion Sort builds a sorted portion of the array by inserting each element into its correct position. 
+    </p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="insertion-visualizer-section">
+
+      <!-- Definition -->
+      <section id="insertion-definition-section">
+        <h2>What is Insertion Sort?</h2>
+        <p>
+          Insertion Sort treats the left part of the array as sorted and picks one element at a time
+          from the unsorted part, inserting it into the correct position within the sorted part. 
+        </p>
+        <p>
+          It works similarly to sorting playing cards in your hand: you take the next card and shift
+          larger cards to the right until you find the right place to insert it. 
+        </p>
+      </section>
+
+      <!-- Controls / initialization -->
+      <section id="insertion-init-section">
+        <h2>Array Setup</h2>
+        <div class="init-row">
+          <label>
+            Size:
+            <input type="number" id="insertion-size-input" min="2" max="30" />
+          </label>
+          <label>
+            Elements (comma-separated):
+            <input type="text" id="insertion-elements-input" placeholder="e.g., 5,3,8,4,2" />
+          </label>
+          <button id="insertion-init-btn">Create Array</button>
+        </div>
+        <p id="insertion-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization area -->
+      <section id="insertion-visual-section">
+        <h2>Insertion Sort Animation</h2>
+        <div id="insertion-array-container"></div>
+        <p id="insertion-pass-info"></p>
+      </section>
+
+      <!-- Controls for stepping / playing -->
+      <section id="insertion-controls-section">
+        <h2>Controls</h2>
+        <p class="small-note">
+          Step through shifts, run full animation, or reset the array.
+        </p>
+        <div class="buttons-row">
+          <button id="insertion-prev-step-btn">Previous Step</button>
+          <button id="insertion-next-step-btn">Next Step</button>
+          <button id="insertion-play-btn">Play</button>
+          <button id="insertion-reset-btn">Reset</button>
+        </div>
+        <p id="insertion-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="insertion-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="insertion-explanation-box">
+          Initialize the array, then start the Insertion Sort steps.
+        </div>
+      </section>
+
+      <!-- Complexity / legend -->
+      <section id="insertion-legend-section">
+        <h2>Complexity &amp; Legend</h2>
+        <p>
+          Time complexity: best case O(n) for an already sorted array, average and worst cases O(n²)
+          due to shifting; space complexity: O(1), and the algorithm is stable. 
+        </p>
+        <ul>
+          <li><span class="legend-box active"></span> Current key element being inserted</li>
+          <li><span class="legend-box shifted"></span> Element shifted to make space</li>
+          <li><span class="legend-box sorted"></span> Part of array already sorted on the left</li>
+        </ul>
+      </section>
+
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="sorting.html">← Back to Sorting Algorithms</a>
+    </div>
+  </main>
+
+  <!-- Single ES module entry -->
+  <script type="module" src="ui/insertionControls.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Radix Sort Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Radix Sort Visualizer</h1>
+    <p>
+      Watch how Radix Sort processes numbers digit by digit using Counting Sort on each position to build a fully sorted array. 
+    </p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="radix-visualizer-section">
+
+      <!-- Definition -->
+      <section id="radix-definition-section">
+        <h2>What is Radix Sort?</h2>
+        <p>
+          Radix Sort is a non-comparison sorting algorithm that sorts integers by processing individual
+          digits from least significant to most significant, using a stable sort like Counting Sort on each digit. 
+        </p>
+        <p>
+          By repeatedly grouping numbers into buckets based on the current digit and recombining them,
+          Radix Sort achieves linear time O(n · d) for n keys with d digits when the base is fixed. 
+        </p>
+      </section>
+
+      <!-- Controls / initialization -->
+      <section id="radix-init-section">
+        <h2>Array Setup</h2>
+        <div class="init-row">
+          <label>
+            Size:
+            <input type="number" id="radix-size-input" min="2" max="30" />
+          </label>
+          <label>
+            Elements (non-negative, comma-separated):
+            <input type="text" id="radix-elements-input" placeholder="e.g., 170,45,75,90,802,24,2,66" />
+          </label>
+          <button id="radix-init-btn">Create Array</button>
+        </div>
+        <p id="radix-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization area -->
+      <section id="radix-visual-section">
+        <h2>Radix Sort Animation</h2>
+        <div id="radix-array-container"></div>
+        <div id="radix-bucket-container"></div>
+        <p id="radix-pass-info"></p>
+      </section>
+
+      <!-- Controls for stepping / playing -->
+      <section id="radix-controls-section">
+        <h2>Controls</h2>
+        <p class="small-note">
+          Step through each digit pass, run full animation, or reset the array.
+        </p>
+        <div class="buttons-row">
+          <button id="radix-prev-step-btn">Previous Step</button>
+          <button id="radix-next-step-btn">Next Step</button>
+          <button id="radix-play-btn">Play</button>
+          <button id="radix-reset-btn">Reset</button>
+        </div>
+        <p id="radix-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="radix-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="radix-explanation-box">
+          Initialize the array, then start the Radix Sort steps.
+        </div>
+      </section>
+
+      <!-- Complexity / legend -->
+      <section id="radix-legend-section">
+        <h2>Complexity &amp; Legend</h2>
+        <p>
+          Time complexity: O(n · d) where n is the number of elements and d is the number of digits
+          in the largest number; space complexity: O(n + b) for temporary buckets in base b (typically 10). 
+        </p>
+        <ul>
+          <li><span class="legend-box active"></span> Current element being placed for this digit</li>
+          <li><span class="legend-box shifted"></span> Bucket cell being updated (for the current digit)</li>
+          <li><span class="legend-box sorted"></span> Elements already correctly ordered up to this digit</li>
+        </ul>
+      </section>
+
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="sorting.html">← Back to Sorting Algorithms</a>
+    </div>
+  </main>
+
+  <!-- Single ES module entry -->
+  <script type="module" src="ui/radixControls.js"></script>
+</body>
+</html>

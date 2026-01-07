@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Array Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Array Visualizer</h1>
+    <p>See how arrays are created, connected in memory, and modified step by step.</p>
+  </header>
+
+  <!-- Main area: centers the visualizer, footer at bottom-right -->
+  <main class="ds-main array-page-main">
+    <!-- ARRAY VISUALIZER -->
+    <section id="array-visualizer-section">
+
+      <!-- Array definition -->
+      <section id="array-definition-section">
+        <h2>What is an Array?</h2>
+        <p>
+          An array is a contiguous block of memory that stores a fixed number of elements of the same type.
+          Each element is accessed using its index starting from 0, which makes reading or updating by index run in constant time O(1).
+        </p>
+      </section>
+
+      <!-- Array Initialization -->
+      <section id="init-section">
+        <h2>Array Initialization</h2>
+        <div class="init-row">
+          <label>
+            Capacity (fixed size):
+            <input type="number" id="array-size-input" min="1" max="20" />
+          </label>
+          <label>
+            Initial elements (comma-separated):
+            <input type="text" id="array-elements-input" placeholder="e.g., 10,20,30" />
+          </label>
+          <button id="init-array-btn">Create Array</button>
+        </div>
+        <p id="init-error" class="error-message"></p>
+      </section>
+
+      <!-- Array Visualization -->
+      <section id="visual-section">
+        <h2>Array View (Old & New)</h2>
+        <div class="array-rows">
+          <div class="array-row">
+            <div class="row-title">Current array (variable points here)</div>
+            <div id="array-container"></div>
+          </div>
+          <div class="array-row">
+            <div class="row-title">New array during resize (temporary)</div>
+            <div id="new-array-container"></div>
+          </div>
+        </div>
+        <p id="capacity-info"></p>
+      </section>
+
+      <!-- Controls -->
+      <section id="controls-section">
+        <h2>Array Operations</h2>
+        <p class="small-note">
+          You can operate by <strong>index</strong>, by <strong>value</strong>, or both (for the resize demo when full).
+        </p>
+        <div class="controls-row">
+          <label>
+            Index (optional):
+            <input type="number" id="op-index-input" />
+          </label>
+          <label>
+            Value (optional, numeric):
+            <input type="text" id="op-value-input" />
+          </label>
+        </div>
+        <div class="buttons-row">
+          <button data-op="access" class="op-btn">Access</button>
+          <button data-op="insert" class="op-btn">Insert</button>
+          <button data-op="delete" class="op-btn">Delete</button>
+          <button data-op="update" class="op-btn">Update</button>
+        </div>
+        <p id="op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="explanation-box">Initialize the array to get started.</div>
+      </section>
+
+      <!-- Legend -->
+      <section id="legend-section">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active index / currently accessed</li>
+          <li><span class="legend-box shifted"></span> Shifted element during insert/delete</li>
+          <li><span class="legend-box invalid"></span> Invalid index or failed search</li>
+          <li><span class="legend-box resize"></span> Cells in the new resized array</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="index.html">← Back to Data Structure Visualizer</a>
+    </div>
+  </main>
+
+  <!-- JS files -->
+  <script src="core/arrayLogic.js"></script>
+  <script src="visual/animate.js"></script>
+  <script src="ui/controls.js"></script>
+</body>
+</html>

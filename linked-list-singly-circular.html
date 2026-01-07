@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Singly Circular Linked List Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Singly Circular Linked List Visualizer</h1>
+    <p>See how a list behaves when the last node’s next pointer loops back to the head instead of null.</p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="csll-visualizer-section">
+      <!-- Definition -->
+      <section id="csll-definition-section">
+        <h2>What is a Singly Circular Linked List?</h2>
+        <p>
+          A singly circular linked list is a sequence of nodes where each node stores a value and a pointer to the next node,
+          and the <strong>last node’s next pointer</strong> points back to the <strong>head</strong> node instead of null.
+          There is no null terminator, so any traversal must detect when it has returned to the head after one full loop.
+        </p>
+      </section>
+
+      <!-- Initialization -->
+      <section id="csll-init-section">
+        <h2>List Initialization</h2>
+        <p class="small-note">
+          Start with an empty circular list, or create one from comma-separated values. The last node’s next pointer will
+          automatically point back to head, forming a circle.
+        </p>
+        <div class="init-row">
+          <label>
+            Initial elements (comma-separated, optional):
+            <input type="text" id="csll-elements-input" placeholder="e.g., 10,20,30" />
+          </label>
+          <button id="csll-init-btn">Create Circular List</button>
+          <button id="csll-clear-btn">Clear List</button>
+        </div>
+        <p id="csll-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization: circular arena -->
+      <section id="csll-visual-section">
+        <h2>List View (Circular)</h2>
+        <p class="small-note">
+          Nodes are arranged around a circle. The <strong>head</strong> node is marked, and following
+          <strong>next</strong> pointers moves around the ring. After the last node, <strong>next</strong> leads back to head.
+        </p>
+
+        <div id="csll-circle-wrapper">
+          <!-- Labels outside the arena -->
+          <div id="csll-head-label">head</div>
+          <div id="csll-circle-container">
+            <!-- nodes placed around the circle by JS -->
+          </div>
+          <div id="csll-length-label"></div>
+        </div>
+      </section>
+
+      <!-- Controls -->
+      <section id="csll-controls-section">
+        <h2>Linked List Operations</h2>
+        <p class="small-note">
+          Operations still rely on pointer traversal, but because the list is circular there is no null after tail.
+          A full traversal stops once we return to the head node.
+        </p>
+
+        <!-- Inputs -->
+        <div class="controls-row">
+          <label>
+            Index (0-based, optional):
+            <input type="number" id="csll-index-input" min="0" />
+          </label>
+          <label>
+            Value (for insert/search/delete by value):
+            <input type="text" id="csll-value-input" />
+          </label>
+          <label>
+            Target value (for insert before/after element):
+            <input type="text" id="csll-target-value-input" />
+          </label>
+        </div>
+
+        <!-- Insert at ends -->
+        <div class="buttons-row csll-buttons-row">
+          <span class="buttons-label">Insert at ends:</span>
+          <div class="buttons-group">
+            <button class="csll-op-btn" data-op="insert-head">Insert at Head</button>
+            <button class="csll-op-btn" data-op="insert-tail">Insert at End</button>
+          </div>
+        </div>
+
+        <!-- Insert by position/value -->
+        <div class="buttons-row csll-buttons-row">
+          <span class="buttons-label">Insert by position/value:</span>
+          <div class="buttons-group">
+            <button class="csll-op-btn" data-op="insert-index">Insert at Index</button>
+            <button class="csll-op-btn" data-op="insert-before">Insert Before Element</button>
+            <button class="csll-op-btn" data-op="insert-after">Insert After Element</button>
+          </div>
+        </div>
+
+        <!-- Delete at ends -->
+        <div class="buttons-row csll-buttons-row">
+          <span class="buttons-label">Delete at ends:</span>
+          <div class="buttons-group">
+            <button class="csll-op-btn" data-op="delete-head">Delete Head</button>
+            <button class="csll-op-btn" data-op="delete-tail">Delete at End</button>
+          </div>
+        </div>
+
+        <!-- Delete by position/value -->
+        <div class="buttons-row csll-buttons-row">
+          <span class="buttons-label">Delete by position/value:</span>
+          <div class="buttons-group">
+            <button class="csll-op-btn" data-op="delete-index">Delete at Index</button>
+            <button class="csll-op-btn" data-op="delete-value">Delete Element</button>
+          </div>
+        </div>
+
+        <!-- Search -->
+        <div class="buttons-row csll-buttons-row">
+          <span class="buttons-label">Search:</span>
+          <div class="buttons-group">
+            <button class="csll-op-btn" data-op="search-value">Search by Value</button>
+            <button class="csll-op-btn" data-op="search-index">Search by Index</button>
+          </div>
+        </div>
+
+        <!-- Traversal -->
+        <div class="buttons-row csll-buttons-row">
+          <span class="buttons-label">Traversal:</span>
+          <div class="buttons-group">
+            <button class="csll-op-btn" data-op="traverse-once">
+              Traverse Once Around Circle (from head)
+            </button>
+          </div>
+        </div>
+
+        <p id="csll-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="csll-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="csll-explanation-box">
+          Initialize the circular list or pick an operation to see how the next pointers move around the ring.
+        </div>
+        <p id="csll-complexity-info" class="small-note"></p>
+      </section>
+
+      <!-- Legend -->
+      <section id="csll-legend-section">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active node / currently visited in traversal</li>
+          <li><span class="legend-box pointer"></span> Updated pointer (next reference changes here)</li>
+          <li><span class="legend-box target"></span> Target node for insertion, deletion, or search</li>
+          <li><span class="legend-box removed"></span> Node being deleted (fades out)</li>
+          <li><span class="legend-box special"></span> Head node (start of the circle)</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="linked-list.html">← Back to Linked List Types</a>
+    </div>
+  </main>
+
+  <!-- JS files for singly circular linked list module -->
+  <script src="core/singlyCircularLogic.js"></script>
+  <script src="visual/singlyCircularAnimate.js"></script>
+  <script src="ui/singlyCircularControls.js"></script>
+</body>
+</html>

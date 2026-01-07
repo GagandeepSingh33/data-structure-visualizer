@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Queue Visualizer (FIFO)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Queue Visualizer (FIFO)</h1>
+    <p>
+      See how values are enqueued at the rear and dequeued from the front of a queue
+      following First-In, First-Out order.
+    </p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="queue-visualizer-section">
+      <!-- Definition -->
+      <section id="queue-definition-section">
+        <h2>What is a Queue?</h2>
+        <p>
+          A queue is a linear data structure that stores elements in a
+          <strong>First-In, First-Out</strong> (FIFO) order.
+          New elements are added using <strong>enqueue</strong> at the <strong>rear</strong>
+          and removed using <strong>dequeue</strong> from the <strong>front</strong>.
+          Operations like enqueue, dequeue, and peek typically run in constant time
+          when implemented with front and rear indices.
+        </p>
+      </section>
+
+      <!-- Types of Queue -->
+      <section id="queue-types-section">
+        <h2>Types of Queue</h2>
+
+        <div class="queue-types-row">
+          <!-- Left: buttons -->
+          <div class="queue-types-buttons">
+            <button class="queue-type-btn active" data-type="linear">
+              Linear Queue
+            </button>
+            <button class="queue-type-btn" data-type="circular">
+              Circular Queue
+            </button>
+            <button class="queue-type-btn" data-type="priority">
+              Priority Queue
+            </button>
+          </div>
+
+          <!-- Right: definition -->
+          <div class="queue-type-description">
+            <h3 id="queue-type-title">Linear Queue</h3>
+            <p id="queue-type-text">
+              A linear queue is a basic FIFO structure where elements are inserted at the
+              rear and deleted from the front in a straight sequence, like a normal waiting line.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Click to visualize -->
+      <section id="queue-visualize-section">
+        <h2>Click to visualize</h2>
+        <div class="queue-visualize-buttons">
+          <a class="queue-visualize-btn" href="queue-linear.html">
+            Visualize Linear Queue
+          </a>
+          <a class="queue-visualize-btn" href="queue-circular.html">
+            Visualize Circular Queue
+          </a>
+          <a class="queue-visualize-btn" href="queue-priority.html">
+            Visualize Priority Queue
+          </a>
+        </div>
+      </section>
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="index.html">← Back to Data Structure Home</a>
+    </div>
+  </main>
+
+  <!-- Inline JS for types of queue -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const queueInfo = {
+        linear: {
+          title: "Linear Queue",
+          text:
+            "A linear queue is a basic FIFO structure where elements are inserted at the rear " +
+            "and deleted from the front in a straight sequence, like a normal waiting line."
+        },
+        circular: {
+          title: "Circular Queue",
+          text:
+            "A circular queue connects the last position back to the first, forming a ring " +
+            "so that freed positions can be reused efficiently while still following FIFO."
+        },
+        priority: {
+          title: "Priority Queue",
+          text:
+            "A priority queue assigns a priority to each element and always removes the element " +
+            "with the highest priority, not necessarily the one that arrived first."
+        }
+      };
+
+      const buttons = document.querySelectorAll(".queue-type-btn");
+      const titleEl = document.getElementById("queue-type-title");
+      const textEl = document.getElementById("queue-type-text");
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          buttons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          const type = btn.dataset.type;
+          const info = queueInfo[type];
+          if (!info) return;
+
+          titleEl.textContent = info.title;
+          textEl.textContent = info.text;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

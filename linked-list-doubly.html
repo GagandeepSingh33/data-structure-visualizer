@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Doubly Linked List Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Doubly Linked List Visualizer</h1>
+    <p>See how nodes with both prev and next pointers enable bidirectional traversal and efficient tail operations.</p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="dll-visualizer-section">
+      <!-- Definition -->
+      <section id="dll-definition-section">
+        <h2>What is a Doubly Linked List?</h2>
+        <p>
+          A doubly linked list is a sequence of nodes where each node stores a value and two pointers:
+          <strong>prev</strong> to the previous node and <strong>next</strong> to the next node.
+          The <strong>prev</strong> pointer lets you move one step backward in the list, while the
+          <strong>next</strong> pointer lets you move one step forward, so traversal can go in both directions.
+        </p>
+      </section>
+
+      <!-- Initialization -->
+      <section id="dll-init-section">
+        <h2>List Initialization</h2>
+        <p class="small-note">
+          Start with an empty list, or create one from comma-separated values. Each value becomes a node
+          linked from left to right with both prev and next pointers set.
+        </p>
+        <div class="init-row">
+          <label>
+            Initial elements (comma-separated, optional):
+            <input type="text" id="dll-elements-input" placeholder="e.g., 10,20,30" />
+          </label>
+          <button id="dll-init-btn">Create List</button>
+          <button id="dll-clear-btn">Clear List</button>
+        </div>
+        <p id="dll-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization -->
+      <section id="dll-visual-section">
+        <h2>List View</h2>
+        <p class="small-note">
+          The <strong>head</strong> pointer refers to the first node and <strong>tail</strong> to the last node.
+          Each node shows both <strong>prev</strong> and <strong>next</strong> arrows to visualize bidirectional links.
+        </p>
+
+        <div class="dll-view-wrapper">
+          <div id="dll-head-label">head →</div>
+          <div id="dll-list-container"></div>
+          <div id="dll-tail-label">← tail</div>
+        </div>
+
+        <p id="dll-length-info"></p>
+      </section>
+
+      <!-- Controls -->
+      <section id="dll-controls-section">
+        <h2>Linked List Operations</h2>
+        <p class="small-note">
+          Operations still traverse from the head using pointers, but having both prev and next pointers
+          makes some updates around the tail and in the middle easier to picture.
+        </p>
+
+        <!-- Inputs -->
+        <div class="controls-row">
+          <label>
+            Index (0-based, optional):
+            <input type="number" id="dll-index-input" min="0" />
+          </label>
+          <label>
+            Value (for insert/search/delete by value):
+            <input type="text" id="dll-value-input" />
+          </label>
+          <label>
+            Target value (for insert before/after element):
+            <input type="text" id="dll-target-value-input" />
+          </label>
+        </div>
+
+        <!-- Insert at ends -->
+        <div class="buttons-row dll-buttons-row">
+          <span class="buttons-label">Insert at ends:</span>
+          <div class="buttons-group">
+            <button class="dll-op-btn" data-op="insert-head">Insert at Head</button>
+            <button class="dll-op-btn" data-op="insert-tail">Insert at End</button>
+          </div>
+        </div>
+
+        <!-- Insert by position/value -->
+        <div class="buttons-row dll-buttons-row">
+          <span class="buttons-label">Insert by position/value:</span>
+          <div class="buttons-group">
+            <button class="dll-op-btn" data-op="insert-index">Insert at Index</button>
+            <button class="dll-op-btn" data-op="insert-before">Insert Before Element</button>
+            <button class="dll-op-btn" data-op="insert-after">Insert After Element</button>
+          </div>
+        </div>
+
+        <!-- Delete at ends -->
+        <div class="buttons-row dll-buttons-row">
+          <span class="buttons-label">Delete at ends:</span>
+          <div class="buttons-group">
+            <button class="dll-op-btn" data-op="delete-head">Delete Head</button>
+            <button class="dll-op-btn" data-op="delete-tail">Delete at End</button>
+          </div>
+        </div>
+
+        <!-- Delete by position/value -->
+        <div class="buttons-row dll-buttons-row">
+          <span class="buttons-label">Delete by position/value:</span>
+          <div class="buttons-group">
+            <button class="dll-op-btn" data-op="delete-index">Delete at Index</button>
+            <button class="dll-op-btn" data-op="delete-value">Delete Element</button>
+          </div>
+        </div>
+
+        <!-- Search -->
+        <div class="buttons-row dll-buttons-row">
+          <span class="buttons-label">Search:</span>
+          <div class="buttons-group">
+            <button class="dll-op-btn" data-op="search-value">Search by Value</button>
+            <button class="dll-op-btn" data-op="search-index">Search by Index</button>
+          </div>
+        </div>
+
+        <!-- Traversal -->
+        <div class="buttons-row dll-buttons-row">
+          <span class="buttons-label">Traversal:</span>
+          <div class="buttons-group">
+            <button class="dll-op-btn" data-op="traverse-forward">Traverse Forward (head → tail)</button>
+            <button class="dll-op-btn" data-op="traverse-backward">Traverse Backward (tail → head)</button>
+          </div>
+        </div>
+
+        <p id="dll-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="dll-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="dll-explanation-box">
+          Initialize the list or pick an operation to see prev/next pointer traversal and updates step by step.
+        </div>
+        <p id="dll-complexity-info" class="small-note"></p>
+      </section>
+
+      <!-- Legend -->
+      <section id="dll-legend-section">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active node / currently visited during traversal</li>
+          <li><span class="legend-box pointer"></span> Updated pointer (prev/next reference changes here)</li>
+          <li><span class="legend-box target"></span> Target node for insertion, deletion, or search</li>
+          <li><span class="legend-box removed"></span> Node being deleted (fades out)</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="linked-list.html">← Back to Linked List Types</a>
+    </div>
+  </main>
+
+  <!-- JS files for doubly linked list module -->
+  <script src="core/doublyListLogic.js"></script>
+  <script src="visual/doublyListAnimate.js"></script>
+  <script src="ui/doublyListControls.js"></script>
+</body>
+</html>

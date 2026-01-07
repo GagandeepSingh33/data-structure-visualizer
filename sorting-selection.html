@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Selection Sort Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Centered header -->
+  <header class="ds-header ds-header-center">
+    <h1>Selection Sort Visualizer</h1>
+    <p>Watch how Selection Sort repeatedly selects the minimum element and places it at the beginning of the array. </p>
+  </header>
+
+  <!-- Main area -->
+  <main class="ds-main array-page-main">
+    <section id="selection-visualizer-section">
+
+      <!-- Definition -->
+      <section id="selection-definition-section">
+        <h2>What is Selection Sort?</h2>
+        <p>
+          Selection Sort is a comparison-based algorithm that divides the array into a sorted and an
+          unsorted part, then repeatedly selects the minimum element from the unsorted part and swaps
+          it with the first unsorted position. 
+        </p>
+        <p>
+          After each pass, the sorted region grows from the left while the unsorted region shrinks,
+          until all elements are placed in their correct positions. 
+        </p>
+      </section>
+
+      <!-- Controls / initialization -->
+      <section id="selection-init-section">
+        <h2>Array Setup</h2>
+        <div class="init-row">
+          <label>
+            Size:
+            <input type="number" id="selection-size-input" min="2" max="30" />
+          </label>
+          <label>
+            Elements (comma-separated):
+            <input type="text" id="selection-elements-input" placeholder="e.g., 5,3,8,4,2" />
+          </label>
+          <button id="selection-init-btn">Create Array</button>
+        </div>
+        <p id="selection-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Visualization area -->
+      <section id="selection-visual-section">
+        <h2>Selection Sort Animation</h2>
+        <div id="selection-array-container"></div>
+        <p id="selection-pass-info"></p>
+      </section>
+
+      <!-- Controls for stepping / playing -->
+      <section id="selection-controls-section">
+        <h2>Controls</h2>
+        <p class="small-note">
+          Step through selections, run full animation, or reset the array.
+        </p>
+        <div class="buttons-row">
+          <button id="selection-prev-step-btn">Previous Step</button>
+          <button id="selection-next-step-btn">Next Step</button>
+          <button id="selection-play-btn">Play</button>
+          <button id="selection-reset-btn">Reset</button>
+        </div>
+        <p id="selection-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation -->
+      <section id="selection-explanation-section">
+        <h2>Step Explanation</h2>
+        <div id="selection-explanation-box">Initialize the array, then start the Selection Sort steps.</div>
+      </section>
+
+      <!-- Complexity / legend -->
+      <section id="selection-legend-section">
+        <h2>Complexity &amp; Legend</h2>
+        <p>
+          Time complexity: best, average, and worst cases are all O(n^2), because it always scans the
+          remaining unsorted elements; space complexity: O(1) since it sorts in-place. 
+        </p>
+        <ul>
+          <li><span class="legend-box active"></span> Currently selected minimum candidate</li>
+          <li><span class="legend-box shifted"></span> Element being swapped into the sorted region</li>
+          <li><span class="legend-box sorted"></span> Part of array already in final position</li>
+        </ul>
+      </section>
+
+    </section>
+
+    <!-- Bottom-right back link -->
+    <div class="page-footer">
+      <a class="back-link" href="sorting.html">← Back to Sorting Algorithms</a>
+    </div>
+  </main>
+
+  <!-- Single ES module entry -->
+  <script type="module" src="ui/selectionControls.js"></script>
+</body>
+</html>

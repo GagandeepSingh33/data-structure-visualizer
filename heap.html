@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Heap Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="ds-header ds-header-center">
+    <h1>Heap Visualizer</h1>
+    <p>
+      Step through array creation, heapify for min/max heaps, and heap sort into a separate array.
+    </p>
+  </header>
+
+  <main class="ds-main array-page-main">
+    <section id="heap-visualizer-section">
+
+      <!-- Heap definition -->
+      <section id="heap-definition-section">
+        <h2>What is a Heap?</h2>
+        <p>
+          A heap is a complete binary tree stored in an array. In a min-heap, every node is
+          less than or equal to its children; in a max-heap, every node is greater than or
+          equal to its children. The root (index 0) always stores the extreme value.
+        </p>
+      </section>
+
+      <!-- Phase 1: configuration + create array only -->
+      <section id="heap-config-section">
+        <h2>Heap Configuration</h2>
+        <div class="init-row">
+          <label>
+            Capacity:
+            <input type="number" id="heap-size-input" min="1" max="30" />
+          </label>
+
+          <label>
+            Initial elements (comma-separated):
+            <input type="text" id="heap-elements-input" placeholder="e.g., 10, 3, 25, 7" />
+          </label>
+
+          <label>
+            Heap type:
+            <select id="heap-type-select">
+              <option value="min" selected>Min-Heap</option>
+              <option value="max">Max-Heap</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="buttons-row">
+          <button id="create-array-btn">Create Array (no heapify)</button>
+        </div>
+
+        <p id="heap-init-error" class="error-message"></p>
+      </section>
+
+      <!-- Array + tree views -->
+      <section id="heap-visual-section">
+        <h2>Heap Views</h2>
+
+        <div class="array-rows">
+          <div class="array-row">
+            <div class="row-title">
+              Underlying array (as created)
+            </div>
+            <div id="heap-array-container"></div>
+          </div>
+        </div>
+        <p id="heap-capacity-info"></p>
+
+        <div class="array-rows">
+          <div class="array-row">
+            <div class="row-title">
+              Tree view (built one node at a time)
+            </div>
+            <div id="heap-tree-container" class="heap-tree"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Heap sort view -->
+      <section id="heap-sort-section">
+        <h2>Heap Sort View</h2>
+        <p class="small-note">
+          Heap sort will move one element at a time into this separate sorted array using a max-heap.
+        </p>
+        <div class="array-rows">
+          <div class="array-row">
+            <div class="row-title">
+              Sorted array (heap sort result)
+            </div>
+            <div id="heap-sort-array-container"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 2 & 3 + live operations -->
+      <section id="heap-controls-section">
+        <h2>Heap Operations</h2>
+        <p class="small-note">
+          1. Create array. 2. Heapify according to heap type. 3. Run heap sort.
+          After heapify you can also insert/delete elements from the heap.
+        </p>
+
+        <!-- Phase buttons -->
+        <div class="buttons-row">
+          <button id="heapify-btn" disabled>Heapify Array</button>
+        </div>
+
+        <div class="buttons-row">
+          <button id="heap-sort-btn" disabled>Run Heap Sort</button>
+        </div>
+
+        <!-- Live heap operations (after heapify) -->
+        <div class="controls-row">
+          <label>
+            Value (for insert):
+            <input type="text" id="heap-value-input" placeholder="numeric value" />
+          </label>
+        </div>
+
+        <div class="buttons-row">
+          <button data-op="insert" class="heap-op-btn" disabled>Insert</button>
+          <button data-op="deleteRoot" class="heap-op-btn" disabled>Delete Root</button>
+          <button data-op="clear" class="heap-op-btn" disabled>Clear Heap</button>
+        </div>
+
+        <p id="heap-op-error" class="error-message"></p>
+      </section>
+
+      <!-- Explanation + playback controls -->
+      <section id="heap-explanation-section">
+        <h2>Step Explanation</h2>
+
+        <div class="heap-playback-controls">
+          <button id="heap-prev-step-btn">◀ Prev</button>
+          <button id="heap-play-pause-btn">Pause</button>
+          <button id="heap-next-step-btn">Next ▶</button>
+
+          <span class="heap-speed-label">Speed:</span>
+          <button id="heap-speed-decrease">−</button>
+          <input
+            type="range"
+            id="heap-speed-slider"
+            min="1"
+            max="5"
+            step="1"
+            value="3"
+          />
+          <button id="heap-speed-increase">+</button>
+        </div>
+
+        <div id="heap-explanation-box">
+          Choose capacity, elements, and heap type, then click "Create Array".
+        </div>
+      </section>
+
+      <!-- Legend -->
+      <section id="heap-legend-section">
+        <h2>Legend</h2>
+        <ul>
+          <li><span class="legend-box active"></span> Active / compared node</li>
+          <li><span class="legend-box shifted"></span> Swapped node (bubble-up/down or sort)</li>
+          <li><span class="legend-box invalid"></span> Invalid operation or error</li>
+        </ul>
+      </section>
+    </section>
+
+    <div class="page-footer">
+      <a class="back-link" href="index.html">← Back to Data Structure Visualizer</a>
+    </div>
+  </main>
+
+  <script src="core/heapsLogic.js"></script>
+  <script src="visual/heapsAnimate.js"></script>
+  <script src="ui/heapsControls.js"></script>
+</body>
+</html>
